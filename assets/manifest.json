@@ -1,0 +1,536 @@
+{
+  "schema_version": 1,
+  "source_repository": "https://github.com/maikonmichelalmeida/kinghost_www",
+  "source_revision": "41a5ec8dc9c6574cb025e6a4b3389d4a9c0a1009",
+  "source_files": {
+    "style.js": "bfba61a3f2af311e25ab4e1619687a37aeb43ac4a6f0c66628d438a92f3ef116",
+    "lesson-trainer.js": "985a0a03327b1bdf736eabfaa4e352e4559c300d76e2f31ad48725cba4873c26"
+  },
+  "resources": [
+    {
+      "exercise_id": 1,
+      "kind": "audio",
+      "path": "sample_vocal/Sustained Hiss.mp3",
+      "bytes": 131759,
+      "sha256": "6c0ac71d91a3bdb95cb5fce3ec4cb148db30c09a6e9d27a40866267eafe39b1e"
+    },
+    {
+      "exercise_id": 2,
+      "kind": "audio",
+      "path": "sample_vocal/Staccato Puffs.mp3",
+      "bytes": 132911,
+      "sha256": "b1ee5dd0d3d67227743a2a84d9b4d1c070f34e4d182b98cd89b650252ea4752b"
+    },
+    {
+      "exercise_id": 3,
+      "kind": "audio",
+      "path": "sample_vocal/Deep Hoo.mp3",
+      "bytes": 111023,
+      "sha256": "ec522055f4efc7d27b6899df34af6230799dcf6658c272e2307a28eb15b54556"
+    },
+    {
+      "exercise_id": 4,
+      "kind": "audio",
+      "path": "sample_vocal/Descending Nya.mp3",
+      "bytes": 105263,
+      "sha256": "875b41d8e5c82dffdaf170f48fef732297303522b8cb1b07b298c88217e8d3d9"
+    },
+    {
+      "exercise_id": 4,
+      "kind": "image",
+      "path": "tablaturas/Descending Nya.png",
+      "bytes": 6618,
+      "sha256": "60b057230eb6f5ff4b4e1cd2c95cfed0afae73d4815a7031e4af54201d793fb2"
+    },
+    {
+      "exercise_id": 5,
+      "kind": "audio",
+      "path": "sample_vocal/Mum Motif.mp3",
+      "bytes": 131759,
+      "sha256": "8fcfba45642e20793c16ee48748e7c2dad4a33ab49df51019b9fe848c59b93f7"
+    },
+    {
+      "exercise_id": 5,
+      "kind": "image",
+      "path": "tablaturas/Mum Motif.png",
+      "bytes": 7714,
+      "sha256": "ce472917a8a776f075cbdccca21fd080b162993c463101f88ede26f1739ba745"
+    },
+    {
+      "exercise_id": 6,
+      "kind": "audio",
+      "path": "sample_vocal/Nyum Scale.mp3",
+      "bytes": 130607,
+      "sha256": "edea9d8303fdaf9b4a0d2d366ce16da71db39e8b593e8aca39e17828680a522c"
+    },
+    {
+      "exercise_id": 6,
+      "kind": "image",
+      "path": "tablaturas/Nyum Scale.png",
+      "bytes": 7818,
+      "sha256": "3d11da3961dc052b5fe99c46395cb13caac71cb90af01d7467d773f6533c44e3"
+    },
+    {
+      "exercise_id": 7,
+      "kind": "audio",
+      "path": "sample_vocal/Hmm Mah Arpeggio.mp3",
+      "bytes": 184751,
+      "sha256": "4e7f6e2a9272bafaa7f1b4ac6eac2ae25bfb0b48f9f1a76e68aec40e58151ffd"
+    },
+    {
+      "exercise_id": 7,
+      "kind": "image",
+      "path": "tablaturas/Hmm Mah Arpeggio.png",
+      "bytes": 8618,
+      "sha256": "6dfa136e3a98c074c8004535a9fad65fffdc437d721cf79d58c129f51094c234"
+    },
+    {
+      "exercise_id": 8,
+      "kind": "audio",
+      "path": "sample_vocal/Doo Hoo Motif.mp3",
+      "bytes": 140975,
+      "sha256": "80635173bb687208baae7e3e2ceca4a4d92a9b3e6b2b2ab00f55c3d427f0a545"
+    },
+    {
+      "exercise_id": 8,
+      "kind": "image",
+      "path": "tablaturas/Doo Hoo Motif.png",
+      "bytes": 9314,
+      "sha256": "4b510ee03b3ea4df58fae5a481e67b2d4f98bdaa8a25019c152c00763dca1c52"
+    },
+    {
+      "exercise_id": 9,
+      "kind": "audio",
+      "path": "sample_vocal/Me He Maa Staccato & Legato.mp3",
+      "bytes": 143279,
+      "sha256": "09a29cc4284d4029fc84caeb89d99b3909de7216477fb4e693728db10502f208"
+    },
+    {
+      "exercise_id": 9,
+      "kind": "image",
+      "path": "tablaturas/Me He Maa Staccato & Legato.png",
+      "bytes": 8374,
+      "sha256": "ad658a9a9de914be25f6658546c6a534a384524f6b0b07278c3f4803bc59b40f"
+    },
+    {
+      "exercise_id": 10,
+      "kind": "audio",
+      "path": "sample_vocal/Yum Ya.mp3",
+      "bytes": 147311,
+      "sha256": "7ecc60e3f19c5e3d525a8649218da8847fd67901013bd63552cbd49f08fef316"
+    },
+    {
+      "exercise_id": 10,
+      "kind": "image",
+      "path": "tablaturas/Yum Ya.png",
+      "bytes": 8564,
+      "sha256": "13315d464b0e05270a29ce9cf9fd0f03c0556d57911900d136c23d7e84884890"
+    },
+    {
+      "exercise_id": 11,
+      "kind": "audio",
+      "path": "sample_vocal/Mom Moh.mp3",
+      "bytes": 140399,
+      "sha256": "f82339b050a84271efa57b71e39be9910b91aec7cd400e7ad60a15c5ec58186d"
+    },
+    {
+      "exercise_id": 11,
+      "kind": "image",
+      "path": "tablaturas/Mom Moh.png",
+      "bytes": 7833,
+      "sha256": "2d5a31da7b36e95530642e03d6bb8e39cff1df37747137d1eded862729ea4183"
+    },
+    {
+      "exercise_id": 12,
+      "kind": "audio",
+      "path": "sample_vocal/Glee Scale.mp3",
+      "bytes": 155375,
+      "sha256": "55ef1f70bea9088fff2d92967b16d16c31d6855729ab07f52ec1528340a9b244"
+    },
+    {
+      "exercise_id": 12,
+      "kind": "image",
+      "path": "tablaturas/Glee Scale.png",
+      "bytes": 8136,
+      "sha256": "be8f7a98ce3487ea65af094bc193c25a7c5ee473b59c9bb747653cc3fe0da424"
+    },
+    {
+      "exercise_id": 13,
+      "kind": "audio",
+      "path": "sample_vocal/Puffy Cheek.mp3",
+      "bytes": 132911,
+      "sha256": "8b4f4f8e4dc09558f7aad3052c97fa59fb71575c2b9ef0367703469bbe454d8c"
+    },
+    {
+      "exercise_id": 13,
+      "kind": "image",
+      "path": "tablaturas/Puffy Cheek.png",
+      "bytes": 7610,
+      "sha256": "060bd5d711054abc0b758c7f8aac9e469b8ca91eff715fc59ce86c569335bec1"
+    },
+    {
+      "exercise_id": 14,
+      "kind": "audio",
+      "path": "sample_vocal/Mah Meh Mee Moh Moo.mp3",
+      "bytes": 109871,
+      "sha256": "aa14f01db601aa0d3b1498e7f8dbf880d019be5701f869e7559a5cb9252c9f2a"
+    },
+    {
+      "exercise_id": 14,
+      "kind": "image",
+      "path": "tablaturas/Mah Meh Mee Moh Moo.png",
+      "bytes": 5897,
+      "sha256": "6e6804443079d775d94811d76dda00c189cd36ef3570932357ab1dacaa6fba1d"
+    },
+    {
+      "exercise_id": 15,
+      "kind": "audio",
+      "path": "sample_vocal/Mommy Made Me Mash.mp3",
+      "bytes": 121391,
+      "sha256": "caf562ceb30db8364b0509f3e64dd2fc7b75cd8d35313aa93c0b541434ddb3e7"
+    },
+    {
+      "exercise_id": 15,
+      "kind": "image",
+      "path": "tablaturas/Mommy Made Me Mash.png",
+      "bytes": 7636,
+      "sha256": "24038ca9004d2da70c04f17187364a99996718e16278eb2a916f9c19905448c6"
+    },
+    {
+      "exercise_id": 16,
+      "kind": "audio",
+      "path": "sample_vocal/Chewy Cherry.mp3",
+      "bytes": 112751,
+      "sha256": "9bd23328938b0238ce376ab116e517c6ba9074005c9824e0026f3b1f6e59985a"
+    },
+    {
+      "exercise_id": 16,
+      "kind": "image",
+      "path": "tablaturas/Chewy Chrrey.png",
+      "bytes": 7518,
+      "sha256": "800e8cd2a6cae4e6cdd1a62580f4bc21b7260b5d4be28764079094dc5d8cd0e3"
+    },
+    {
+      "exercise_id": 17,
+      "kind": "audio",
+      "path": "sample_vocal/Poppy Puppy.mp3",
+      "bytes": 104111,
+      "sha256": "9b052015a03c0b0c1d2dd66350b22258183a0dc7b6020ba9704b465dceb2e531"
+    },
+    {
+      "exercise_id": 17,
+      "kind": "image",
+      "path": "tablaturas/Poppy Puppy.png",
+      "bytes": 7767,
+      "sha256": "dc6abb3c997ca4bccc297534b65cd91b6bb466a6600db83d32d0c1228b4c85eb"
+    },
+    {
+      "exercise_id": 18,
+      "kind": "audio",
+      "path": "sample_vocal/Blueberry.mp3",
+      "bytes": 120815,
+      "sha256": "697b858a6c42e61cc31c918276fe86e43865fb269142ca328c86e5a85b1e66f6"
+    },
+    {
+      "exercise_id": 18,
+      "kind": "image",
+      "path": "tablaturas/Blueberry.png",
+      "bytes": 7240,
+      "sha256": "a789b96eb7e7e37d4c193539d2652f537936fd8c8b7a4112288c0dfe9430378f"
+    },
+    {
+      "exercise_id": 19,
+      "kind": "audio",
+      "path": "sample_vocal/Bumblebee.mp3",
+      "bytes": 350063,
+      "sha256": "79616d35552a7ab78e98811f3ea164b4c652c8c6876ad1440b2a2cf86f248740"
+    },
+    {
+      "exercise_id": 19,
+      "kind": "image",
+      "path": "tablaturas/Bumblebee.png",
+      "bytes": 10155,
+      "sha256": "8bf032e33cf6047760331ae7b56fd47b52df250f596d4619e8e9fbbe139086b4"
+    },
+    {
+      "exercise_id": 20,
+      "kind": "audio",
+      "path": "sample_vocal/Neh Noy Scale.mp3",
+      "bytes": 174383,
+      "sha256": "79f482056979d0b946d09cbc17394be5a64a00e3db4e4f6c41d517dd1769899c"
+    },
+    {
+      "exercise_id": 20,
+      "kind": "image",
+      "path": "tablaturas/Neh Noy Scale.png",
+      "bytes": 10747,
+      "sha256": "e4ac4975b277b287476fca7f0f0a0523bdb468ebc14cf6faf4824ecd02480be6"
+    },
+    {
+      "exercise_id": 21,
+      "kind": "audio",
+      "path": "sample_vocal/Octave Repeat Nay.mp3",
+      "bytes": 141551,
+      "sha256": "ac9511a1789c3a8eb4d7b2409080cc854c4959a07e76ebfd14e43dd37b9f541c"
+    },
+    {
+      "exercise_id": 21,
+      "kind": "image",
+      "path": "tablaturas/Octave repeat Nay.png",
+      "bytes": 8378,
+      "sha256": "07e9628786d1f7cd878acaf389c918077c72daddd92666b26f24ca4c7591abf0"
+    },
+    {
+      "exercise_id": 22,
+      "kind": "audio",
+      "path": "sample_vocal/Octave Alternate Ee.mp3",
+      "bytes": 160559,
+      "sha256": "7892f5a3c9590179e0888a40d54e11ed3c0ef6c60cda61f365175eacb39c724f"
+    },
+    {
+      "exercise_id": 22,
+      "kind": "image",
+      "path": "tablaturas/Octave Alternate Ee.png",
+      "bytes": 5271,
+      "sha256": "592ffefa4906dd8beee26afb9230474ec0cd0e425d78c8cf5fc4481973083319"
+    },
+    {
+      "exercise_id": 23,
+      "kind": "audio",
+      "path": "sample_vocal/bouncing Eh.mp3",
+      "bytes": 149615,
+      "sha256": "78139841ff49ea85d43c883137cc39d3a283793ffb2cbb8879b68d62b1454286"
+    },
+    {
+      "exercise_id": 23,
+      "kind": "image",
+      "path": "tablaturas/Bouncing Eh.png",
+      "bytes": 9100,
+      "sha256": "0d6cabed4151dc0f5ac399ff4f9534ac666aafdce437100ed6086fd0bba46fd3"
+    },
+    {
+      "exercise_id": 24,
+      "kind": "audio",
+      "path": "sample_vocal/Leaping Ga.mp3",
+      "bytes": 184175,
+      "sha256": "5102ed7dd4ca35c3c717720dce5625fe7bc8ff07a916d583de19a64c4bfdf796"
+    },
+    {
+      "exercise_id": 24,
+      "kind": "image",
+      "path": "tablaturas/Leaping Ga.png",
+      "bytes": 8519,
+      "sha256": "06ecf0ef367b0b033153a03836d65986080b7346fd059b15a0a596e32046efee"
+    },
+    {
+      "exercise_id": 25,
+      "kind": "audio",
+      "path": "sample_vocal/1.5 Octave Go.mp3",
+      "bytes": 177263,
+      "sha256": "e4fb9a10be461a5ecf014d63f354c970bbdf3d5ea3cfeb95fb311b7a37531364"
+    },
+    {
+      "exercise_id": 25,
+      "kind": "image",
+      "path": "tablaturas/1.5 Octave Go.png",
+      "bytes": 9652,
+      "sha256": "22bfd8a13626c90e4768304cdabc967caadc5b5b295b4d892052ac66a6651293"
+    },
+    {
+      "exercise_id": 26,
+      "kind": "audio",
+      "path": "sample_vocal/Ascending Yaw.mp3",
+      "bytes": 161135,
+      "sha256": "46683a82defb5e30374cfe673e91f6c6330bcbaa3d03bf6e86884d54667ec55e"
+    },
+    {
+      "exercise_id": 26,
+      "kind": "image",
+      "path": "tablaturas/Ascending Yaw.png",
+      "bytes": 8004,
+      "sha256": "7842ad2a623c571ac0e98fd57fce72befae226d406067a3a5b1a06ab0ff7325e"
+    },
+    {
+      "exercise_id": 27,
+      "kind": "audio",
+      "path": "sample_vocal/Thee-Note Run.mp3",
+      "bytes": 138671,
+      "sha256": "2b4289127703def70a40b953808bf4907c928c68fe96ba4cbeaeff003debc29d"
+    },
+    {
+      "exercise_id": 27,
+      "kind": "image",
+      "path": "tablaturas/Three-Note run.png",
+      "bytes": 5987,
+      "sha256": "6619233ce8abd344ccd24e960b0ed7574cdaffc01247ecf8b78acf3d25ddff98"
+    },
+    {
+      "exercise_id": 28,
+      "kind": "audio",
+      "path": "sample_vocal/Swift Build-Up.mp3",
+      "bytes": 173807,
+      "sha256": "83afe92b31264bfb86f9e663ca0822a6a5bde99d5119870cb05f7aa3af709b15"
+    },
+    {
+      "exercise_id": 28,
+      "kind": "image",
+      "path": "tablaturas/Swift Bullid-Up.png",
+      "bytes": 8008,
+      "sha256": "2f2066ec77017b714ff91e41ab1453b5b51d5bd7080fd45e0f48035a87f6c12a"
+    },
+    {
+      "exercise_id": 29,
+      "kind": "audio",
+      "path": "sample_vocal/Major 7 Arpeggio.mp3",
+      "bytes": 297071,
+      "sha256": "38ecc2e139608db640acc99f514d94b63db2bbd209bf42cf6c8af16e2cb923e0"
+    },
+    {
+      "exercise_id": 29,
+      "kind": "image",
+      "path": "tablaturas/Major 7 Arpeggio.png",
+      "bytes": 8570,
+      "sha256": "87836fcb74dac524d9616409f5c463914977f0098a0d60dbef502afd9a354f69"
+    },
+    {
+      "exercise_id": 30,
+      "kind": "audio",
+      "path": "sample_vocal/Ascending Run.mp3",
+      "bytes": 189935,
+      "sha256": "47591f0ff63b5094dcc16025a311535fa43d2c15456371cf2a4b633df2dd938f"
+    },
+    {
+      "exercise_id": 30,
+      "kind": "image",
+      "path": "tablaturas/Ascending Run.png",
+      "bytes": 7806,
+      "sha256": "94f69d9a79cf84e9b618530a183c3e8183d1b50cede31bbb687a77f1ef2d92f2"
+    },
+    {
+      "exercise_id": 31,
+      "kind": "audio",
+      "path": "sample_vocal/Descending Run.mp3",
+      "bytes": 191087,
+      "sha256": "c15b4dcc6243db2c22cb66b7b78decd4df80b92be88ca137b284f46244992cc8"
+    },
+    {
+      "exercise_id": 31,
+      "kind": "image",
+      "path": "tablaturas/Descending Run.png",
+      "bytes": 7554,
+      "sha256": "a1e27f623fcc4ac2d4bc963612e2057cae197068c8d640b6adda0e6571148fb6"
+    },
+    {
+      "exercise_id": 32,
+      "kind": "audio",
+      "path": "sample_vocal/Major Scale Ascending.mp3",
+      "bytes": 149039,
+      "sha256": "72814cb852e44493a17c806f338d8ff4082d990cbcea48262a5a5901481c262a"
+    },
+    {
+      "exercise_id": 32,
+      "kind": "image",
+      "path": "tablaturas/Major Scale Ascending.png",
+      "bytes": 5478,
+      "sha256": "3bf2bd6cff5295de959acc31c9f6ce46dfe46d65e6a362b94dff51517c753d37"
+    },
+    {
+      "exercise_id": 33,
+      "kind": "audio",
+      "path": "sample_vocal/Minor Scale Ascending.mp3",
+      "bytes": 154799,
+      "sha256": "8477cf19e2ac64f2b8481e949aa2bae8779a233e3da1bd46967759aea60b6295"
+    },
+    {
+      "exercise_id": 33,
+      "kind": "image",
+      "path": "tablaturas/Minor Sacale Ascending.png",
+      "bytes": 5357,
+      "sha256": "f483ed458c8d4572985384384f23aba0c3f563b5050d30bc1ad4dc051468e7ea"
+    },
+    {
+      "exercise_id": 34,
+      "kind": "audio",
+      "path": "sample_vocal/Major Scale Descending.mp3",
+      "bytes": 142703,
+      "sha256": "4f154df7a7cc5ea4c80e91b1cbbd4f8f1c59a10e29bdf82ac35a2609ca366a78"
+    },
+    {
+      "exercise_id": 34,
+      "kind": "image",
+      "path": "tablaturas/Major Scale Descending.png",
+      "bytes": 4981,
+      "sha256": "82237421316376a0146c518ddb236071b4392784cb685c087e196bf84e5e0a38"
+    },
+    {
+      "exercise_id": 35,
+      "kind": "audio",
+      "path": "sample_vocal/Minor Scale Descending.mp3",
+      "bytes": 159407,
+      "sha256": "15706ae7ed2624d623c70915397f2a2da0e9606533735579b3aed2d45523f29e"
+    },
+    {
+      "exercise_id": 35,
+      "kind": "image",
+      "path": "tablaturas/Minor Scale Descending.png",
+      "bytes": 5483,
+      "sha256": "40f0d5cd791dde213d77cceb3a677d47a7da7a75d2aeed67a5aff509900d7ae9"
+    },
+    {
+      "exercise_id": 36,
+      "kind": "audio",
+      "path": "sample_vocal/Major Scale Asc. Intervals.mp3",
+      "bytes": 226799,
+      "sha256": "775544fc51945de336063449c2690eab9bed51163306125f03c54cbc75223228"
+    },
+    {
+      "exercise_id": 36,
+      "kind": "image",
+      "path": "tablaturas/Major Scale Asc. Intervals.png",
+      "bytes": 6305,
+      "sha256": "4041e723af35b4e559b83dc0d7d0c193300dbca5cda9409c3c5273b51caa3d66"
+    },
+    {
+      "exercise_id": 37,
+      "kind": "audio",
+      "path": "sample_vocal/Minor Scale Asc. Intervals.mp3",
+      "bytes": 224495,
+      "sha256": "03b00198ebdd641583fe6360d729a686117080f13043687a406f0946c1872abd"
+    },
+    {
+      "exercise_id": 37,
+      "kind": "image",
+      "path": "tablaturas/Minor Scale Asc. Intervals.png",
+      "bytes": 6196,
+      "sha256": "13b442f43188b17c7bb4b5a0a56628b85b9ac99416c3fd01896107b4e8b59114"
+    },
+    {
+      "exercise_id": 38,
+      "kind": "audio",
+      "path": "sample_vocal/Major Scale Desc. Intervals.mp3",
+      "bytes": 234863,
+      "sha256": "e4b6ba55280d95237699f968eca9f0f13a6b9a3df5bae34641e093cd2cdf5c45"
+    },
+    {
+      "exercise_id": 38,
+      "kind": "image",
+      "path": "tablaturas/Major Scale Desc. Intervals.png",
+      "bytes": 6482,
+      "sha256": "2ddb355d26852862bc9bb1b575055a78d17e99730b2c814ab9d1c1953a2e283c"
+    },
+    {
+      "exercise_id": 39,
+      "kind": "audio",
+      "path": "sample_vocal/Minor Scale Desc. Intervals.mp3",
+      "bytes": 234863,
+      "sha256": "c4b7cd324ccf6751ddb6b9733bf94e09a4d843df84b204f4a3cd207a18afcdb3"
+    },
+    {
+      "exercise_id": 39,
+      "kind": "image",
+      "path": "tablaturas/Minor Sale Desc. Intervals.png",
+      "bytes": 6284,
+      "sha256": "c1aa793aac229d7aced8d6ffd9a9113627bec084a06a4acba4dbba393d67010d"
+    }
+  ]
+}
