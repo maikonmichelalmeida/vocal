@@ -1,5 +1,15 @@
 # Áudio local
 
+## Volume dos exemplos
+
+Os 39 exemplos MP3 receberam ganho linear de **3× (+9,54 dB)** em 15/10/2026, a pedido do usuário. O ganho atua nos arquivos, mantendo a dinâmica, as notas e a duração; não utiliza compressor nem corte dos picos. Os MP3 foram recodificados em 320 kbit/s. O volume do player continua em 80%, portanto o aumento em relação à reprodução anterior também é de aproximadamente 3× em amplitude (isso não significa três vezes a sensação subjetiva de volume).
+
+O script `scripts/amplify_examples.py` mede RMS, pico de amostra e estimativa do pico entre amostras com sobreamostragem 4× antes e depois da codificação. Se necessário, reduz o ganho para manter os picos abaixo de −1 dBFS. Todos os 39 arquivos admitiram 3× sem essa redução. O manifesto registra hashes originais e finais, ganho e medições. A referência web permanece intacta; os MP3 originais também estão no histórico Git anterior à amplificação.
+
+Validação: os 206 testes passaram, incluindo decodificação dos 39 MP3 no backend real Qt, duração em amostras preservada, RMS aproximadamente 3× e picos abaixo do teto. O maior pico estimado após a codificação foi −8,50 dBFS. Nenhum teste desta alteração abriu microfone ou reproduziu som nos alto-falantes.
+
+Para manutenção, o script aceita `--ffmpeg CAMINHO` ou usa `imageio-ffmpeg` (instalado somente na `.venv`; não é dependência de execução do aplicativo). Ele recusa aplicar ganho novamente em um manifesto já processado. Para reconstruir a partir da referência, execute a extração original e depois a amplificação. Todos os arquivos são validados antes de substituir os recursos locais.
+
 ## Captura e relógio
 
 `CaptureEngine` usa PortAudio/sounddevice, mono float32 a 48 kHz. O callback copia os blocos sem normalizar, filtrar ou reamostrar; um worker calcula pitch em janelas de 4096 amostras, a cada 20 ms, conforme o tamanho e cadência de `trainer/app.js`. A fila de análise é limitada. Se o processamento atrasar, o PCM permanece preservado em memória e o contador `dropped_analysis_blocks` informa perdas de análise. Descontinuidades reiniciam a janela e geram um evento sem pitch.

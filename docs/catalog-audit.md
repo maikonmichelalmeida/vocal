@@ -54,6 +54,12 @@ dos dois JavaScripts auditados. Cada cópia foi comparada byte a byte com a
 origem. O carregador valida correspondência catálogo/manifesto, existência e
 tamanho; `load_catalog(verify_hashes=True)` valida também todos os SHA-256.
 
+Após essa cópia inicial, os 39 MP3 foram amplificados em 3× a pedido do usuário.
+Seus hashes/tamanhos atuais estão no manifesto; os originais e as medições de
+ganho ficam em `amplification` de cada áudio. Os PNG continuam idênticos à
+origem. A amplificação preserva a duração e não modifica o repositório web.
+Veja o processamento e sua validação em [audio.md](audio.md).
+
 Grafias e capitalização históricas preservadas incluem:
 
 | Exercício | Recurso original |

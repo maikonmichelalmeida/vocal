@@ -11,29 +11,109 @@
       "exercise_id": 1,
       "kind": "audio",
       "path": "sample_vocal/Sustained Hiss.mp3",
-      "bytes": 131759,
-      "sha256": "6c0ac71d91a3bdb95cb5fce3ec4cb148db30c09a6e9d27a40866267eafe39b1e"
+      "bytes": 220998,
+      "sha256": "bed4abb1ee190aeeb9cb874369be09bb7e2da47c9bb81b5d3b65d2a78d3709bd",
+      "amplification": {
+        "original_sha256": "6c0ac71d91a3bdb95cb5fce3ec4cb148db30c09a6e9d27a40866267eafe39b1e",
+        "original_bytes": 131759,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 262656,
+          "sample_peak": 0.12126462161540985,
+          "estimated_true_peak_4x": 0.12526841461658478,
+          "rms": 0.01269463892449939
+        },
+        "after": {
+          "frames_48000": 262656,
+          "sample_peak": 0.3637983202934265,
+          "estimated_true_peak_4x": 0.37580177187919617,
+          "rms": 0.038084003337943116
+        }
+      }
     },
     {
       "exercise_id": 2,
       "kind": "audio",
       "path": "sample_vocal/Staccato Puffs.mp3",
-      "bytes": 132911,
-      "sha256": "b1ee5dd0d3d67227743a2a84d9b4d1c070f34e4d182b98cd89b650252ea4752b"
+      "bytes": 222918,
+      "sha256": "596f420acef16091b0d053d4d77fb0dc0ff636b7bb8adbe7a1432428dc0612ca",
+      "amplification": {
+        "original_sha256": "b1ee5dd0d3d67227743a2a84d9b4d1c070f34e4d182b98cd89b650252ea4752b",
+        "original_bytes": 132911,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 264960,
+          "sample_peak": 0.08493241667747498,
+          "estimated_true_peak_4x": 0.08498648554086685,
+          "rms": 0.0054713151424702205
+        },
+        "after": {
+          "frames_48000": 264960,
+          "sample_peak": 0.2547973096370697,
+          "estimated_true_peak_4x": 0.25495949387550354,
+          "rms": 0.016413946159053876
+        }
+      }
     },
     {
       "exercise_id": 3,
       "kind": "audio",
       "path": "sample_vocal/Deep Hoo.mp3",
-      "bytes": 111023,
-      "sha256": "ec522055f4efc7d27b6899df34af6230799dcf6658c272e2307a28eb15b54556"
+      "bytes": 186438,
+      "sha256": "a10ba1a4cf50b863deafab23ed4e8e748e2dabd7b7a698c93e53e72c1142d31d",
+      "amplification": {
+        "original_sha256": "ec522055f4efc7d27b6899df34af6230799dcf6658c272e2307a28eb15b54556",
+        "original_bytes": 111023,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 221184,
+          "sample_peak": 0.1216265931725502,
+          "estimated_true_peak_4x": 0.12264298647642136,
+          "rms": 0.0071571232593548575
+        },
+        "after": {
+          "frames_48000": 221184,
+          "sample_peak": 0.36488866806030273,
+          "estimated_true_peak_4x": 0.36793386936187744,
+          "rms": 0.021471468518046155
+        }
+      }
     },
     {
       "exercise_id": 4,
       "kind": "audio",
       "path": "sample_vocal/Descending Nya.mp3",
-      "bytes": 105263,
-      "sha256": "875b41d8e5c82dffdaf170f48fef732297303522b8cb1b07b298c88217e8d3d9"
+      "bytes": 176838,
+      "sha256": "f1832835c6d1fe7c59dbb38bb4cd2c427a321dda6f6c448cb0f29e5d76df00b5",
+      "amplification": {
+        "original_sha256": "875b41d8e5c82dffdaf170f48fef732297303522b8cb1b07b298c88217e8d3d9",
+        "original_bytes": 105263,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 209664,
+          "sample_peak": 0.04348265379667282,
+          "estimated_true_peak_4x": 0.04363511875271797,
+          "rms": 0.007857482269144003
+        },
+        "after": {
+          "frames_48000": 209664,
+          "sample_peak": 0.13044965267181396,
+          "estimated_true_peak_4x": 0.13090811669826508,
+          "rms": 0.023572824149812308
+        }
+      }
     },
     {
       "exercise_id": 4,
@@ -46,8 +126,28 @@
       "exercise_id": 5,
       "kind": "audio",
       "path": "sample_vocal/Mum Motif.mp3",
-      "bytes": 131759,
-      "sha256": "8fcfba45642e20793c16ee48748e7c2dad4a33ab49df51019b9fe848c59b93f7"
+      "bytes": 220998,
+      "sha256": "01da7dd45a28492743248a5be23fac52194be7dca3fc95a6d699cdb327b8b134",
+      "amplification": {
+        "original_sha256": "8fcfba45642e20793c16ee48748e7c2dad4a33ab49df51019b9fe848c59b93f7",
+        "original_bytes": 131759,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 262656,
+          "sample_peak": 0.03997894749045372,
+          "estimated_true_peak_4x": 0.04030661657452583,
+          "rms": 0.006995545704523864
+        },
+        "after": {
+          "frames_48000": 262656,
+          "sample_peak": 0.11992353200912476,
+          "estimated_true_peak_4x": 0.12090673297643661,
+          "rms": 0.020986656156534063
+        }
+      }
     },
     {
       "exercise_id": 5,
@@ -60,8 +160,28 @@
       "exercise_id": 6,
       "kind": "audio",
       "path": "sample_vocal/Nyum Scale.mp3",
-      "bytes": 130607,
-      "sha256": "edea9d8303fdaf9b4a0d2d366ce16da71db39e8b593e8aca39e17828680a522c"
+      "bytes": 219078,
+      "sha256": "d4a66f9c2a49479f510f0d5910117850b815315916a52e4122657f21b07b2155",
+      "amplification": {
+        "original_sha256": "edea9d8303fdaf9b4a0d2d366ce16da71db39e8b593e8aca39e17828680a522c",
+        "original_bytes": 130607,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 260352,
+          "sample_peak": 0.05694073811173439,
+          "estimated_true_peak_4x": 0.05722673237323761,
+          "rms": 0.008823410643175959
+        },
+        "after": {
+          "frames_48000": 260352,
+          "sample_peak": 0.1708294153213501,
+          "estimated_true_peak_4x": 0.17169326543807983,
+          "rms": 0.026470711809094962
+        }
+      }
     },
     {
       "exercise_id": 6,
@@ -74,8 +194,28 @@
       "exercise_id": 7,
       "kind": "audio",
       "path": "sample_vocal/Hmm Mah Arpeggio.mp3",
-      "bytes": 184751,
-      "sha256": "4e7f6e2a9272bafaa7f1b4ac6eac2ae25bfb0b48f9f1a76e68aec40e58151ffd"
+      "bytes": 309318,
+      "sha256": "ce29fb7cb6437556b5ff806cf2356e98af787978372833d36a13045c051e88a7",
+      "amplification": {
+        "original_sha256": "4e7f6e2a9272bafaa7f1b4ac6eac2ae25bfb0b48f9f1a76e68aec40e58151ffd",
+        "original_bytes": 184751,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 368640,
+          "sample_peak": 0.04663456231355667,
+          "estimated_true_peak_4x": 0.0469609759747982,
+          "rms": 0.008276901797974795
+        },
+        "after": {
+          "frames_48000": 368640,
+          "sample_peak": 0.13991950452327728,
+          "estimated_true_peak_4x": 0.14089776575565338,
+          "rms": 0.024830992343964395
+        }
+      }
     },
     {
       "exercise_id": 7,
@@ -88,8 +228,28 @@
       "exercise_id": 8,
       "kind": "audio",
       "path": "sample_vocal/Doo Hoo Motif.mp3",
-      "bytes": 140975,
-      "sha256": "80635173bb687208baae7e3e2ceca4a4d92a9b3e6b2b2ab00f55c3d427f0a545"
+      "bytes": 236358,
+      "sha256": "13bb1fc49704104e428ed53c46cf1d0ec4b4ceeec9cfa56ed52c4267255aaa37",
+      "amplification": {
+        "original_sha256": "80635173bb687208baae7e3e2ceca4a4d92a9b3e6b2b2ab00f55c3d427f0a545",
+        "original_bytes": 140975,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 281088,
+          "sample_peak": 0.04680071026086807,
+          "estimated_true_peak_4x": 0.04691837728023529,
+          "rms": 0.00810642422915124
+        },
+        "after": {
+          "frames_48000": 281088,
+          "sample_peak": 0.1403992921113968,
+          "estimated_true_peak_4x": 0.14075323939323425,
+          "rms": 0.024319621360199502
+        }
+      }
     },
     {
       "exercise_id": 8,
@@ -102,8 +262,28 @@
       "exercise_id": 9,
       "kind": "audio",
       "path": "sample_vocal/Me He Maa Staccato & Legato.mp3",
-      "bytes": 143279,
-      "sha256": "09a29cc4284d4029fc84caeb89d99b3909de7216477fb4e693728db10502f208"
+      "bytes": 240198,
+      "sha256": "fa35bace532bcef0cbbaf60330df8a027603393dbccfda34c258adb4f429545b",
+      "amplification": {
+        "original_sha256": "09a29cc4284d4029fc84caeb89d99b3909de7216477fb4e693728db10502f208",
+        "original_bytes": 143279,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 285696,
+          "sample_peak": 0.07130837440490723,
+          "estimated_true_peak_4x": 0.07135377079248428,
+          "rms": 0.008936536223145294
+        },
+        "after": {
+          "frames_48000": 285696,
+          "sample_peak": 0.21393559873104095,
+          "estimated_true_peak_4x": 0.21407178044319153,
+          "rms": 0.026809506470030806
+        }
+      }
     },
     {
       "exercise_id": 9,
@@ -116,8 +296,28 @@
       "exercise_id": 10,
       "kind": "audio",
       "path": "sample_vocal/Yum Ya.mp3",
-      "bytes": 147311,
-      "sha256": "7ecc60e3f19c5e3d525a8649218da8847fd67901013bd63552cbd49f08fef316"
+      "bytes": 246918,
+      "sha256": "5db5477c083d5d9fcd4fd6b10e6e621448b4320c634254253b2b58c72b66cf5f",
+      "amplification": {
+        "original_sha256": "7ecc60e3f19c5e3d525a8649218da8847fd67901013bd63552cbd49f08fef316",
+        "original_bytes": 147311,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 293760,
+          "sample_peak": 0.050734393298625946,
+          "estimated_true_peak_4x": 0.05076668784022331,
+          "rms": 0.007068415461405205
+        },
+        "after": {
+          "frames_48000": 293760,
+          "sample_peak": 0.15219496190547943,
+          "estimated_true_peak_4x": 0.15229184925556183,
+          "rms": 0.021205074556528484
+        }
+      }
     },
     {
       "exercise_id": 10,
@@ -130,8 +330,28 @@
       "exercise_id": 11,
       "kind": "audio",
       "path": "sample_vocal/Mom Moh.mp3",
-      "bytes": 140399,
-      "sha256": "f82339b050a84271efa57b71e39be9910b91aec7cd400e7ad60a15c5ec58186d"
+      "bytes": 235398,
+      "sha256": "6b85ce5271bad27e8d1cbb35a592080c2fadf2e36a89d9cd3d9c770c6a67b990",
+      "amplification": {
+        "original_sha256": "f82339b050a84271efa57b71e39be9910b91aec7cd400e7ad60a15c5ec58186d",
+        "original_bytes": 140399,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 279936,
+          "sample_peak": 0.04667175933718681,
+          "estimated_true_peak_4x": 0.04670146852731705,
+          "rms": 0.008298688857180887
+        },
+        "after": {
+          "frames_48000": 279936,
+          "sample_peak": 0.14001823961734772,
+          "estimated_true_peak_4x": 0.14010737836360931,
+          "rms": 0.024896859526894462
+        }
+      }
     },
     {
       "exercise_id": 11,
@@ -144,8 +364,28 @@
       "exercise_id": 12,
       "kind": "audio",
       "path": "sample_vocal/Glee Scale.mp3",
-      "bytes": 155375,
-      "sha256": "55ef1f70bea9088fff2d92967b16d16c31d6855729ab07f52ec1528340a9b244"
+      "bytes": 260358,
+      "sha256": "296c32211867c51223b9d741be4bbd8a06e306b0fe8ecdc04018c4ae1a301c8a",
+      "amplification": {
+        "original_sha256": "55ef1f70bea9088fff2d92967b16d16c31d6855729ab07f52ec1528340a9b244",
+        "original_bytes": 155375,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 309888,
+          "sample_peak": 0.05193548649549484,
+          "estimated_true_peak_4x": 0.05208127200603485,
+          "rms": 0.0070006235806943816
+        },
+        "after": {
+          "frames_48000": 309888,
+          "sample_peak": 0.15580785274505615,
+          "estimated_true_peak_4x": 0.15624281764030457,
+          "rms": 0.021002038709134474
+        }
+      }
     },
     {
       "exercise_id": 12,
@@ -158,8 +398,28 @@
       "exercise_id": 13,
       "kind": "audio",
       "path": "sample_vocal/Puffy Cheek.mp3",
-      "bytes": 132911,
-      "sha256": "8b4f4f8e4dc09558f7aad3052c97fa59fb71575c2b9ef0367703469bbe454d8c"
+      "bytes": 222918,
+      "sha256": "c05fd77b30a4468e5220a665f2702d7944560d81fd2560c438078171f010efff",
+      "amplification": {
+        "original_sha256": "8b4f4f8e4dc09558f7aad3052c97fa59fb71575c2b9ef0367703469bbe454d8c",
+        "original_bytes": 132911,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 264960,
+          "sample_peak": 0.02532542496919632,
+          "estimated_true_peak_4x": 0.02535129152238369,
+          "rms": 0.0047421048616565365
+        },
+        "after": {
+          "frames_48000": 264960,
+          "sample_peak": 0.07597439736127853,
+          "estimated_true_peak_4x": 0.07605242729187012,
+          "rms": 0.014226100743707214
+        }
+      }
     },
     {
       "exercise_id": 13,
@@ -172,8 +432,28 @@
       "exercise_id": 14,
       "kind": "audio",
       "path": "sample_vocal/Mah Meh Mee Moh Moo.mp3",
-      "bytes": 109871,
-      "sha256": "aa14f01db601aa0d3b1498e7f8dbf880d019be5701f869e7559a5cb9252c9f2a"
+      "bytes": 184518,
+      "sha256": "3977d9d990f5d92c0ae8cc09b7c9ba853817770fb1be17636add9e4707d3db83",
+      "amplification": {
+        "original_sha256": "aa14f01db601aa0d3b1498e7f8dbf880d019be5701f869e7559a5cb9252c9f2a",
+        "original_bytes": 109871,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 218880,
+          "sample_peak": 0.05171416699886322,
+          "estimated_true_peak_4x": 0.05175945162773132,
+          "rms": 0.00660516451769567
+        },
+        "after": {
+          "frames_48000": 218880,
+          "sample_peak": 0.15514019131660461,
+          "estimated_true_peak_4x": 0.15528178215026855,
+          "rms": 0.019815969921143917
+        }
+      }
     },
     {
       "exercise_id": 14,
@@ -186,8 +466,28 @@
       "exercise_id": 15,
       "kind": "audio",
       "path": "sample_vocal/Mommy Made Me Mash.mp3",
-      "bytes": 121391,
-      "sha256": "caf562ceb30db8364b0509f3e64dd2fc7b75cd8d35313aa93c0b541434ddb3e7"
+      "bytes": 203718,
+      "sha256": "19be25a38c94b1a0e37afe52c903d648daee8b88634be7709fad0e1d4ca3e3d9",
+      "amplification": {
+        "original_sha256": "caf562ceb30db8364b0509f3e64dd2fc7b75cd8d35313aa93c0b541434ddb3e7",
+        "original_bytes": 121391,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 241920,
+          "sample_peak": 0.054111186414957047,
+          "estimated_true_peak_4x": 0.05428408458828926,
+          "rms": 0.010240257622155965
+        },
+        "after": {
+          "frames_48000": 241920,
+          "sample_peak": 0.16234183311462402,
+          "estimated_true_peak_4x": 0.16285918653011322,
+          "rms": 0.030721413812118847
+        }
+      }
     },
     {
       "exercise_id": 15,
@@ -200,8 +500,28 @@
       "exercise_id": 16,
       "kind": "audio",
       "path": "sample_vocal/Chewy Cherry.mp3",
-      "bytes": 112751,
-      "sha256": "9bd23328938b0238ce376ab116e517c6ba9074005c9824e0026f3b1f6e59985a"
+      "bytes": 189318,
+      "sha256": "34b1ff65c7f189fb6c569f45ce7afdc818021b532b6d59281e61903d9dbde4ed",
+      "amplification": {
+        "original_sha256": "9bd23328938b0238ce376ab116e517c6ba9074005c9824e0026f3b1f6e59985a",
+        "original_bytes": 112751,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 224640,
+          "sample_peak": 0.05583188310265541,
+          "estimated_true_peak_4x": 0.05609790235757828,
+          "rms": 0.009417612189190622
+        },
+        "after": {
+          "frames_48000": 224640,
+          "sample_peak": 0.16750739514827728,
+          "estimated_true_peak_4x": 0.16830599308013916,
+          "rms": 0.028252988949969925
+        }
+      }
     },
     {
       "exercise_id": 16,
@@ -214,8 +534,28 @@
       "exercise_id": 17,
       "kind": "audio",
       "path": "sample_vocal/Poppy Puppy.mp3",
-      "bytes": 104111,
-      "sha256": "9b052015a03c0b0c1d2dd66350b22258183a0dc7b6020ba9704b465dceb2e531"
+      "bytes": 174918,
+      "sha256": "a4f75782237331f4532947700c00c640bc33c9cd99565fadf891eab42a74030d",
+      "amplification": {
+        "original_sha256": "9b052015a03c0b0c1d2dd66350b22258183a0dc7b6020ba9704b465dceb2e531",
+        "original_bytes": 104111,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 207360,
+          "sample_peak": 0.052113767713308334,
+          "estimated_true_peak_4x": 0.05214694142341614,
+          "rms": 0.007267726257847881
+        },
+        "after": {
+          "frames_48000": 207360,
+          "sample_peak": 0.15634141862392426,
+          "estimated_true_peak_4x": 0.15644094347953796,
+          "rms": 0.02180296983978162
+        }
+      }
     },
     {
       "exercise_id": 17,
@@ -228,8 +568,28 @@
       "exercise_id": 18,
       "kind": "audio",
       "path": "sample_vocal/Blueberry.mp3",
-      "bytes": 120815,
-      "sha256": "697b858a6c42e61cc31c918276fe86e43865fb269142ca328c86e5a85b1e66f6"
+      "bytes": 202758,
+      "sha256": "180f0fe231e1828668b1d0066ee83437b61f0987f8970f03900459bbd51a66bf",
+      "amplification": {
+        "original_sha256": "697b858a6c42e61cc31c918276fe86e43865fb269142ca328c86e5a85b1e66f6",
+        "original_bytes": 120815,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 240768,
+          "sample_peak": 0.04277871921658516,
+          "estimated_true_peak_4x": 0.04284323379397392,
+          "rms": 0.008045311609977686
+        },
+        "after": {
+          "frames_48000": 240768,
+          "sample_peak": 0.12832894921302795,
+          "estimated_true_peak_4x": 0.1285255253314972,
+          "rms": 0.024136344914191026
+        }
+      }
     },
     {
       "exercise_id": 18,
@@ -242,8 +602,28 @@
       "exercise_id": 19,
       "kind": "audio",
       "path": "sample_vocal/Bumblebee.mp3",
-      "bytes": 350063,
-      "sha256": "79616d35552a7ab78e98811f3ea164b4c652c8c6876ad1440b2a2cf86f248740"
+      "bytes": 584838,
+      "sha256": "f3cc13de058c4d5f0dfabdee9084a4003f491b8ad5b7ef97fb45b47e825ecaaf",
+      "amplification": {
+        "original_sha256": "79616d35552a7ab78e98811f3ea164b4c652c8c6876ad1440b2a2cf86f248740",
+        "original_bytes": 350063,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 699264,
+          "sample_peak": 0.04720042645931244,
+          "estimated_true_peak_4x": 0.04744856432080269,
+          "rms": 0.007859281215926498
+        },
+        "after": {
+          "frames_48000": 699264,
+          "sample_peak": 0.1416025161743164,
+          "estimated_true_peak_4x": 0.14234618842601776,
+          "rms": 0.02357813202249627
+        }
+      }
     },
     {
       "exercise_id": 19,
@@ -256,8 +636,28 @@
       "exercise_id": 20,
       "kind": "audio",
       "path": "sample_vocal/Neh Noy Scale.mp3",
-      "bytes": 174383,
-      "sha256": "79f482056979d0b946d09cbc17394be5a64a00e3db4e4f6c41d517dd1769899c"
+      "bytes": 292038,
+      "sha256": "eaa4a61ac05e9584854744025cbee7beba388b5491293beedcc1264e88d876c7",
+      "amplification": {
+        "original_sha256": "79f482056979d0b946d09cbc17394be5a64a00e3db4e4f6c41d517dd1769899c",
+        "original_bytes": 174383,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 347904,
+          "sample_peak": 0.05331505835056305,
+          "estimated_true_peak_4x": 0.05349864065647125,
+          "rms": 0.010694750483791498
+        },
+        "after": {
+          "frames_48000": 347904,
+          "sample_peak": 0.15996159613132477,
+          "estimated_true_peak_4x": 0.1605125218629837,
+          "rms": 0.03208472950723879
+        }
+      }
     },
     {
       "exercise_id": 20,
@@ -270,8 +670,28 @@
       "exercise_id": 21,
       "kind": "audio",
       "path": "sample_vocal/Octave Repeat Nay.mp3",
-      "bytes": 141551,
-      "sha256": "ac9511a1789c3a8eb4d7b2409080cc854c4959a07e76ebfd14e43dd37b9f541c"
+      "bytes": 237318,
+      "sha256": "1579a7110c29878991c9a090acf4dbc344b8f6953446083c10da4dfe0652c5fe",
+      "amplification": {
+        "original_sha256": "ac9511a1789c3a8eb4d7b2409080cc854c4959a07e76ebfd14e43dd37b9f541c",
+        "original_bytes": 141551,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 282240,
+          "sample_peak": 0.04169679433107376,
+          "estimated_true_peak_4x": 0.04217619448900223,
+          "rms": 0.007932095578191427
+        },
+        "after": {
+          "frames_48000": 282240,
+          "sample_peak": 0.12508705258369446,
+          "estimated_true_peak_4x": 0.12652496993541718,
+          "rms": 0.023796189550397716
+        }
+      }
     },
     {
       "exercise_id": 21,
@@ -284,8 +704,28 @@
       "exercise_id": 22,
       "kind": "audio",
       "path": "sample_vocal/Octave Alternate Ee.mp3",
-      "bytes": 160559,
-      "sha256": "7892f5a3c9590179e0888a40d54e11ed3c0ef6c60cda61f365175eacb39c724f"
+      "bytes": 268998,
+      "sha256": "8a2ac984b9716659c2521c6eb7dd776c44b79b26150bc4cb23d1feda6d8576af",
+      "amplification": {
+        "original_sha256": "7892f5a3c9590179e0888a40d54e11ed3c0ef6c60cda61f365175eacb39c724f",
+        "original_bytes": 160559,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 320256,
+          "sample_peak": 0.04222044721245766,
+          "estimated_true_peak_4x": 0.04276737570762634,
+          "rms": 0.006994130654185295
+        },
+        "after": {
+          "frames_48000": 320256,
+          "sample_peak": 0.126663476228714,
+          "estimated_true_peak_4x": 0.1282896101474762,
+          "rms": 0.020982198957390747
+        }
+      }
     },
     {
       "exercise_id": 22,
@@ -298,8 +738,28 @@
       "exercise_id": 23,
       "kind": "audio",
       "path": "sample_vocal/bouncing Eh.mp3",
-      "bytes": 149615,
-      "sha256": "78139841ff49ea85d43c883137cc39d3a283793ffb2cbb8879b68d62b1454286"
+      "bytes": 250758,
+      "sha256": "fd37370b8deeb7754ec5415eb555f2b73a7dbb2718b47e973a33333618d19321",
+      "amplification": {
+        "original_sha256": "78139841ff49ea85d43c883137cc39d3a283793ffb2cbb8879b68d62b1454286",
+        "original_bytes": 149615,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 298368,
+          "sample_peak": 0.030572492629289627,
+          "estimated_true_peak_4x": 0.03060922399163246,
+          "rms": 0.005597319401754975
+        },
+        "after": {
+          "frames_48000": 298368,
+          "sample_peak": 0.09171514958143234,
+          "estimated_true_peak_4x": 0.09182582795619965,
+          "rms": 0.016791757816210593
+        }
+      }
     },
     {
       "exercise_id": 23,
@@ -312,8 +772,28 @@
       "exercise_id": 24,
       "kind": "audio",
       "path": "sample_vocal/Leaping Ga.mp3",
-      "bytes": 184175,
-      "sha256": "5102ed7dd4ca35c3c717720dce5625fe7bc8ff07a916d583de19a64c4bfdf796"
+      "bytes": 308358,
+      "sha256": "22aa046335e2317f56d87d96a63a9031b9ec431a5aaecaa9780e30b61d8056c0",
+      "amplification": {
+        "original_sha256": "5102ed7dd4ca35c3c717720dce5625fe7bc8ff07a916d583de19a64c4bfdf796",
+        "original_bytes": 184175,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 367488,
+          "sample_peak": 0.053909286856651306,
+          "estimated_true_peak_4x": 0.05396389961242676,
+          "rms": 0.010864119278810026
+        },
+        "after": {
+          "frames_48000": 367488,
+          "sample_peak": 0.16172435879707336,
+          "estimated_true_peak_4x": 0.16188716888427734,
+          "rms": 0.032592557776608334
+        }
+      }
     },
     {
       "exercise_id": 24,
@@ -326,8 +806,28 @@
       "exercise_id": 25,
       "kind": "audio",
       "path": "sample_vocal/1.5 Octave Go.mp3",
-      "bytes": 177263,
-      "sha256": "e4fb9a10be461a5ecf014d63f354c970bbdf3d5ea3cfeb95fb311b7a37531364"
+      "bytes": 296838,
+      "sha256": "6f27bc55836c6aa082764e8043d86d80524f4314c635e20ff37d83ce47401c86",
+      "amplification": {
+        "original_sha256": "e4fb9a10be461a5ecf014d63f354c970bbdf3d5ea3cfeb95fb311b7a37531364",
+        "original_bytes": 177263,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 353664,
+          "sample_peak": 0.06308838725090027,
+          "estimated_true_peak_4x": 0.06335100531578064,
+          "rms": 0.00907706110648488
+        },
+        "after": {
+          "frames_48000": 353664,
+          "sample_peak": 0.18927507102489471,
+          "estimated_true_peak_4x": 0.19006159901618958,
+          "rms": 0.027231351358366032
+        }
+      }
     },
     {
       "exercise_id": 25,
@@ -340,8 +840,28 @@
       "exercise_id": 26,
       "kind": "audio",
       "path": "sample_vocal/Ascending Yaw.mp3",
-      "bytes": 161135,
-      "sha256": "46683a82defb5e30374cfe673e91f6c6330bcbaa3d03bf6e86884d54667ec55e"
+      "bytes": 269958,
+      "sha256": "bd379e4aca06dc57f47750352232e3795684f8213f7246050f2b276d9d088126",
+      "amplification": {
+        "original_sha256": "46683a82defb5e30374cfe673e91f6c6330bcbaa3d03bf6e86884d54667ec55e",
+        "original_bytes": 161135,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 321408,
+          "sample_peak": 0.044871166348457336,
+          "estimated_true_peak_4x": 0.04489973187446594,
+          "rms": 0.00846927774118933
+        },
+        "after": {
+          "frames_48000": 321408,
+          "sample_peak": 0.13462145626544952,
+          "estimated_true_peak_4x": 0.13470715284347534,
+          "rms": 0.025407536507672867
+        }
+      }
     },
     {
       "exercise_id": 26,
@@ -354,8 +874,28 @@
       "exercise_id": 27,
       "kind": "audio",
       "path": "sample_vocal/Thee-Note Run.mp3",
-      "bytes": 138671,
-      "sha256": "2b4289127703def70a40b953808bf4907c928c68fe96ba4cbeaeff003debc29d"
+      "bytes": 232518,
+      "sha256": "85358ea82c6faf3ac16a24357c7ac9288dc364e9c7c50bc314cf2a004f385ff0",
+      "amplification": {
+        "original_sha256": "2b4289127703def70a40b953808bf4907c928c68fe96ba4cbeaeff003debc29d",
+        "original_bytes": 138671,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 276480,
+          "sample_peak": 0.043249163776636124,
+          "estimated_true_peak_4x": 0.04327669367194176,
+          "rms": 0.006508306173421796
+        },
+        "after": {
+          "frames_48000": 276480,
+          "sample_peak": 0.1297527402639389,
+          "estimated_true_peak_4x": 0.1298353374004364,
+          "rms": 0.01952489550948579
+        }
+      }
     },
     {
       "exercise_id": 27,
@@ -368,8 +908,28 @@
       "exercise_id": 28,
       "kind": "audio",
       "path": "sample_vocal/Swift Build-Up.mp3",
-      "bytes": 173807,
-      "sha256": "83afe92b31264bfb86f9e663ca0822a6a5bde99d5119870cb05f7aa3af709b15"
+      "bytes": 291078,
+      "sha256": "b973392ace565efdbb731ea4dd2f65618ce7b9b78fc5f15c03a53cc1a5fee53f",
+      "amplification": {
+        "original_sha256": "83afe92b31264bfb86f9e663ca0822a6a5bde99d5119870cb05f7aa3af709b15",
+        "original_bytes": 173807,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 346752,
+          "sample_peak": 0.05256076157093048,
+          "estimated_true_peak_4x": 0.05265733599662781,
+          "rms": 0.010188687527055604
+        },
+        "after": {
+          "frames_48000": 346752,
+          "sample_peak": 0.15768922865390778,
+          "estimated_true_peak_4x": 0.15798379480838776,
+          "rms": 0.03056611268492295
+        }
+      }
     },
     {
       "exercise_id": 28,
@@ -382,8 +942,28 @@
       "exercise_id": 29,
       "kind": "audio",
       "path": "sample_vocal/Major 7 Arpeggio.mp3",
-      "bytes": 297071,
-      "sha256": "38ecc2e139608db640acc99f514d94b63db2bbd209bf42cf6c8af16e2cb923e0"
+      "bytes": 496518,
+      "sha256": "f9903b2f039421698c9e64540e00463065c42c3bad44c9f8fc8aa79e993c6cb9",
+      "amplification": {
+        "original_sha256": "38ecc2e139608db640acc99f514d94b63db2bbd209bf42cf6c8af16e2cb923e0",
+        "original_bytes": 297071,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 593280,
+          "sample_peak": 0.04978787899017334,
+          "estimated_true_peak_4x": 0.049819573760032654,
+          "rms": 0.00846114100379105
+        },
+        "after": {
+          "frames_48000": 593280,
+          "sample_peak": 0.1493624448776245,
+          "estimated_true_peak_4x": 0.14945752918720245,
+          "rms": 0.025383513644693018
+        }
+      }
     },
     {
       "exercise_id": 29,
@@ -396,8 +976,28 @@
       "exercise_id": 30,
       "kind": "audio",
       "path": "sample_vocal/Ascending Run.mp3",
-      "bytes": 189935,
-      "sha256": "47591f0ff63b5094dcc16025a311535fa43d2c15456371cf2a4b633df2dd938f"
+      "bytes": 317958,
+      "sha256": "34a32c34cfc96b27f9694615d0fc42d53c45b6e32c412efbabf48689520340b6",
+      "amplification": {
+        "original_sha256": "47591f0ff63b5094dcc16025a311535fa43d2c15456371cf2a4b633df2dd938f",
+        "original_bytes": 189935,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 379008,
+          "sample_peak": 0.04309956729412079,
+          "estimated_true_peak_4x": 0.04313991591334343,
+          "rms": 0.009956226850108501
+        },
+        "after": {
+          "frames_48000": 379008,
+          "sample_peak": 0.1292940378189087,
+          "estimated_true_peak_4x": 0.12941554188728333,
+          "rms": 0.02986824792319034
+        }
+      }
     },
     {
       "exercise_id": 30,
@@ -410,8 +1010,28 @@
       "exercise_id": 31,
       "kind": "audio",
       "path": "sample_vocal/Descending Run.mp3",
-      "bytes": 191087,
-      "sha256": "c15b4dcc6243db2c22cb66b7b78decd4df80b92be88ca137b284f46244992cc8"
+      "bytes": 319878,
+      "sha256": "7da80f2aa7bef14bf2f4664a8a324ea0841af958352fdab08500bf6410cd433f",
+      "amplification": {
+        "original_sha256": "c15b4dcc6243db2c22cb66b7b78decd4df80b92be88ca137b284f46244992cc8",
+        "original_bytes": 191087,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 381312,
+          "sample_peak": 0.04745161160826683,
+          "estimated_true_peak_4x": 0.04763069376349449,
+          "rms": 0.0075457270152360255
+        },
+        "after": {
+          "frames_48000": 381312,
+          "sample_peak": 0.14236274361610413,
+          "estimated_true_peak_4x": 0.14289866387844086,
+          "rms": 0.022637078445970144
+        }
+      }
     },
     {
       "exercise_id": 31,
@@ -424,8 +1044,28 @@
       "exercise_id": 32,
       "kind": "audio",
       "path": "sample_vocal/Major Scale Ascending.mp3",
-      "bytes": 149039,
-      "sha256": "72814cb852e44493a17c806f338d8ff4082d990cbcea48262a5a5901481c262a"
+      "bytes": 249798,
+      "sha256": "8fc22bc81f80e0f3962a6ec7b5ef39e662372d7ab4a08d422e8526fab057cd5b",
+      "amplification": {
+        "original_sha256": "72814cb852e44493a17c806f338d8ff4082d990cbcea48262a5a5901481c262a",
+        "original_bytes": 149039,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 297216,
+          "sample_peak": 0.04289272427558899,
+          "estimated_true_peak_4x": 0.04294421523809433,
+          "rms": 0.008291415946407688
+        },
+        "after": {
+          "frames_48000": 297216,
+          "sample_peak": 0.12868018448352814,
+          "estimated_true_peak_4x": 0.12883494794368744,
+          "rms": 0.02487455423585685
+        }
+      }
     },
     {
       "exercise_id": 32,
@@ -438,8 +1078,28 @@
       "exercise_id": 33,
       "kind": "audio",
       "path": "sample_vocal/Minor Scale Ascending.mp3",
-      "bytes": 154799,
-      "sha256": "8477cf19e2ac64f2b8481e949aa2bae8779a233e3da1bd46967759aea60b6295"
+      "bytes": 259398,
+      "sha256": "de5dd3876afff2f4069d37360c1a35a88373408c413b55106f872841d1057f7a",
+      "amplification": {
+        "original_sha256": "8477cf19e2ac64f2b8481e949aa2bae8779a233e3da1bd46967759aea60b6295",
+        "original_bytes": 154799,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 308736,
+          "sample_peak": 0.0405307374894619,
+          "estimated_true_peak_4x": 0.040569037199020386,
+          "rms": 0.007702479827023408
+        },
+        "after": {
+          "frames_48000": 308736,
+          "sample_peak": 0.12159594893455505,
+          "estimated_true_peak_4x": 0.1217096596956253,
+          "rms": 0.023107567673786595
+        }
+      }
     },
     {
       "exercise_id": 33,
@@ -452,8 +1112,28 @@
       "exercise_id": 34,
       "kind": "audio",
       "path": "sample_vocal/Major Scale Descending.mp3",
-      "bytes": 142703,
-      "sha256": "4f154df7a7cc5ea4c80e91b1cbbd4f8f1c59a10e29bdf82ac35a2609ca366a78"
+      "bytes": 239238,
+      "sha256": "868f75c7aa3566e5bc415a8b4861e81164069ecc84a6f502f76131a70c743548",
+      "amplification": {
+        "original_sha256": "4f154df7a7cc5ea4c80e91b1cbbd4f8f1c59a10e29bdf82ac35a2609ca366a78",
+        "original_bytes": 142703,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 284544,
+          "sample_peak": 0.0470990352332592,
+          "estimated_true_peak_4x": 0.047530077397823334,
+          "rms": 0.007728584673076626
+        },
+        "after": {
+          "frames_48000": 284544,
+          "sample_peak": 0.14131173491477966,
+          "estimated_true_peak_4x": 0.14260289072990417,
+          "rms": 0.023186246338009097
+        }
+      }
     },
     {
       "exercise_id": 34,
@@ -466,8 +1146,28 @@
       "exercise_id": 35,
       "kind": "audio",
       "path": "sample_vocal/Minor Scale Descending.mp3",
-      "bytes": 159407,
-      "sha256": "15706ae7ed2624d623c70915397f2a2da0e9606533735579b3aed2d45523f29e"
+      "bytes": 267078,
+      "sha256": "829bf7f0ff24ddf0f9e9329c4ae1a67fbbef31b08160a913c24d7f5166014bef",
+      "amplification": {
+        "original_sha256": "15706ae7ed2624d623c70915397f2a2da0e9606533735579b3aed2d45523f29e",
+        "original_bytes": 159407,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 317952,
+          "sample_peak": 0.057622574269771576,
+          "estimated_true_peak_4x": 0.057789042592048645,
+          "rms": 0.009150658116652754
+        },
+        "after": {
+          "frames_48000": 317952,
+          "sample_peak": 0.1728600561618805,
+          "estimated_true_peak_4x": 0.17335903644561768,
+          "rms": 0.027452536851428188
+        }
+      }
     },
     {
       "exercise_id": 35,
@@ -480,8 +1180,28 @@
       "exercise_id": 36,
       "kind": "audio",
       "path": "sample_vocal/Major Scale Asc. Intervals.mp3",
-      "bytes": 226799,
-      "sha256": "775544fc51945de336063449c2690eab9bed51163306125f03c54cbc75223228"
+      "bytes": 379398,
+      "sha256": "d9976ee4fe55daaa028152ea6ef3d092c8736f90b2449c30c2cfeb784931f5a9",
+      "amplification": {
+        "original_sha256": "775544fc51945de336063449c2690eab9bed51163306125f03c54cbc75223228",
+        "original_bytes": 226799,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 452736,
+          "sample_peak": 0.05296053737401962,
+          "estimated_true_peak_4x": 0.0529942512512207,
+          "rms": 0.009438353122300017
+        },
+        "after": {
+          "frames_48000": 452736,
+          "sample_peak": 0.15887081623077393,
+          "estimated_true_peak_4x": 0.15897195041179657,
+          "rms": 0.028314775303541182
+        }
+      }
     },
     {
       "exercise_id": 36,
@@ -494,8 +1214,28 @@
       "exercise_id": 37,
       "kind": "audio",
       "path": "sample_vocal/Minor Scale Asc. Intervals.mp3",
-      "bytes": 224495,
-      "sha256": "03b00198ebdd641583fe6360d729a686117080f13043687a406f0946c1872abd"
+      "bytes": 375558,
+      "sha256": "0963cc1401c4dffb58a42cadf51dda385223cf9e41aec31fd30ba5b155cef15b",
+      "amplification": {
+        "original_sha256": "03b00198ebdd641583fe6360d729a686117080f13043687a406f0946c1872abd",
+        "original_bytes": 224495,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 448128,
+          "sample_peak": 0.04250507801771164,
+          "estimated_true_peak_4x": 0.0425717867910862,
+          "rms": 0.007892814087985965
+        },
+        "after": {
+          "frames_48000": 448128,
+          "sample_peak": 0.1275237500667572,
+          "estimated_true_peak_4x": 0.12772418558597565,
+          "rms": 0.023678273253930807
+        }
+      }
     },
     {
       "exercise_id": 37,
@@ -508,8 +1248,28 @@
       "exercise_id": 38,
       "kind": "audio",
       "path": "sample_vocal/Major Scale Desc. Intervals.mp3",
-      "bytes": 234863,
-      "sha256": "e4b6ba55280d95237699f968eca9f0f13a6b9a3df5bae34641e093cd2cdf5c45"
+      "bytes": 392838,
+      "sha256": "bb2b8f38b6d00a425f11c82637f2d15e138983d04e32504122ae4482ee4e6b5b",
+      "amplification": {
+        "original_sha256": "e4b6ba55280d95237699f968eca9f0f13a6b9a3df5bae34641e093cd2cdf5c45",
+        "original_bytes": 234863,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 468864,
+          "sample_peak": 0.043065737932920456,
+          "estimated_true_peak_4x": 0.043364282697439194,
+          "rms": 0.00792643570322617
+        },
+        "after": {
+          "frames_48000": 468864,
+          "sample_peak": 0.12918944656848907,
+          "estimated_true_peak_4x": 0.13008630275726318,
+          "rms": 0.023779159112927387
+        }
+      }
     },
     {
       "exercise_id": 38,
@@ -522,8 +1282,28 @@
       "exercise_id": 39,
       "kind": "audio",
       "path": "sample_vocal/Minor Scale Desc. Intervals.mp3",
-      "bytes": 234863,
-      "sha256": "c4b7cd324ccf6751ddb6b9733bf94e09a4d843df84b204f4a3cd207a18afcdb3"
+      "bytes": 392838,
+      "sha256": "164a896137de8360afa0dff4bbe0305011b636f0ccaea76beb353edfc57cc983",
+      "amplification": {
+        "original_sha256": "c4b7cd324ccf6751ddb6b9733bf94e09a4d843df84b204f4a3cd207a18afcdb3",
+        "original_bytes": 234863,
+        "gain": 3.0,
+        "gain_db": 9.542425094393248,
+        "ceiling_dbfs": -1,
+        "encoder": "libmp3lame 320 kbit/s",
+        "before": {
+          "frames_48000": 468864,
+          "sample_peak": 0.056640625,
+          "estimated_true_peak_4x": 0.05683009698987007,
+          "rms": 0.009514092279690307
+        },
+        "after": {
+          "frames_48000": 468864,
+          "sample_peak": 0.16992223262786865,
+          "estimated_true_peak_4x": 0.17049206793308258,
+          "rms": 0.028541596353010876
+        }
+      }
     },
     {
       "exercise_id": 39,

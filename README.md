@@ -37,6 +37,8 @@ Sem o parâmetro, os 39 exemplos MP3, imagens e treinos respiratórios continuam
 
 As linhas do relatório usam preenchimentos suaves: verde para excelente, verde discreto para boa, amarelo para atenção, laranja para desvio e vermelho para erro. Notas incertas ou ausentes ficam neutras; os rótulos continuam visíveis e os critérios de avaliação são os mesmos.
 
+Os 39 exemplos MP3 têm sinal amplificado em **3×**, com picos verificados após a codificação para evitar saturação. O guia instrumental e a captura do microfone mantêm seus níveis.
+
 ### I · Personalizado (.txt)
 
 Selecione a sessão **I** e clique em **Selecionar arquivo .txt…**. O treino só fica disponível depois da validação. O arquivo UTF-8 deve conter duas linhas: notas com oitava e tempos inteiros em milissegundos, separados por espaços. Exemplo disponível em [examples/personalizado.txt](examples/personalizado.txt):

@@ -1,4 +1,4 @@
-"""Catalogue coverage and byte-for-byte migration checks, without audio hardware."""
+"""Catalog coverage, resource integrity and original musical configurations."""
 import json
 import shutil
 
