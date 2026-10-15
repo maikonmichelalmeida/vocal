@@ -37,6 +37,8 @@ Sem o parâmetro, os 39 exemplos MP3, imagens e treinos respiratórios continuam
 
 As linhas do relatório usam preenchimentos suaves: verde para excelente, verde discreto para boa, amarelo para atenção, laranja para desvio e vermelho para erro. Notas incertas ou ausentes ficam neutras; os rótulos continuam visíveis e os critérios de avaliação são os mesmos.
 
+No gráfico final, o **traço da voz executada** fica mais grosso e recebe as cores da classificação: verde para boa/excelente, amarelo para atenção, laranja para desvio e vermelho para erro. O trecho avaliado com maior desvio de afinação recebe destaque vermelho ainda mais grosso, somente se não for bom/excelente. As barras-alvo mantêm cor, espessura e posição originais. Notas sem execução não geram um traço; trechos de baixa confiança ficam neutros.
+
 Os 39 exemplos MP3 têm sinal amplificado em **3×**, com picos verificados após a codificação para evitar saturação. O guia instrumental e a captura do microfone mantêm seus níveis.
 
 ### I · Personalizado (.txt)
@@ -48,9 +50,9 @@ B3 D4 G4 E4
 500 500 500 500
 ```
 
-Cada nota pode ter uma duração diferente. Sustenidos (`F#4`, `F♯4`) e bemóis (`Bb3`, `B♭3`) são aceitos. A quantidade de tempos deve corresponder à de notas. Limites: 256 notas, 1–60000 ms por nota, 10 minutos no total, arquivo de até 64 KB e notas MIDI 8–119 (com espaço para transposição). Notas muito curtas podem não fornecer voz suficiente para avaliação confiável.
+Cada nota pode ter uma duração diferente. Sustenidos (`F#4`, `F♯4`) e bemóis (`Bb3`, `B♭3`) são aceitos. A quantidade de tempos deve corresponder à de notas. Limites do arquivo na base de 120 BPM: 256 notas, 1–60000 ms por nota, 10 minutos no total, arquivo de até 64 KB e notas MIDI 8–119 (com espaço para transposição). Notas muito curtas podem não fornecer voz suficiente para avaliação confiável.
 
-O gráfico mostra a sequência importada; **Ouvir guia**, transposição e níveis fantasmas continuam disponíveis. BPM e notas/pulso ficam desabilitados porque os tempos vêm do arquivo. O TXT não contém gravação MP3: a prévia deste exercício é instrumental. Ao entrar novamente na sessão I, selecione o arquivo; o aplicativo não copia nem envia seu conteúdo. Os 39 exercícios e recursos originais permanecem intactos.
+O gráfico mostra a sequência importada; **Ouvir guia**, transposição e níveis fantasmas continuam disponíveis. **O BPM é ajustável**: cada tempo do TXT representa a duração a 120 BPM. A duração efetiva é `tempo do TXT × 120 / BPM escolhido`; por exemplo, 500 ms a 60 BPM viram 1000 ms. O ajuste vale para a prévia, o gráfico, o treino e a avaliação de notas repetidas, preservando o ritmo relativo e os dados do arquivo. Apenas notas/pulso permanece desabilitado. O TXT não contém gravação MP3: a prévia deste exercício é instrumental. Ao entrar novamente na sessão I, selecione o arquivo; o aplicativo não copia nem envia seu conteúdo.
 
 Os exercícios 1–3 duram 30 segundos e usam cronômetro/metrônomo, sem abrir microfone nem calcular pitch. O guia simultâneo desmarcado limita a ajuda à referência inicial ou à contagem, conforme o tipo de exercício. Preferências por exercício, sessão e instrumento são salvas em `%LOCALAPPDATA%\VocalTrainer\settings.json`.
 

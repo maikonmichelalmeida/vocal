@@ -26,6 +26,10 @@ class TrainingSettings:
     def note_duration_ms(self) -> int:
         return int(60000 / (self.bpm * self.subdivision) + .5)
 
+    def custom_durations_ms(self, exercise) -> tuple[float, ...]:
+        """TXT durations are written at 120 BPM; never mutate the source score."""
+        return tuple(duration * 120 / self.bpm for duration in exercise.durations_ms)
+
     def after_action(self, action: str, finished: bool) -> "TrainingSettings":
         values = asdict(self)
         if action == "complete" and finished:

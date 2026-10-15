@@ -243,9 +243,11 @@ class MainWindow(QMainWindow):
         self.sequence.setToolTip(self.sequence.text() + "\n" + self.variation.text())
         if self.exercise.durations_ms:
             expected = parse_exercise(shifted)
-            self.custom_plot.configure(expected, self.settings().note_duration_ms, self.exercise.durations_ms)
+            durations = self.settings().custom_durations_ms(self.exercise)
+            self.custom_plot.configure(expected, self.settings().note_duration_ms, durations)
             self.custom_plot.cursor.hide()
-            self.sequence.setToolTip(self.sequence.text() + "\nTempos (ms): " + "  ".join(map(str, self.exercise.durations_ms)))
+            self.sequence.setToolTip(self.sequence.text() + "\nTempos atuais (ms): " + "  ".join(f"{d:g}" for d in durations))
+            self.objective.setText(f"{len(durations)} notas · {sum(durations) / 1000:g} s · {self.bpm.value()} bpm (TXT: base 120)")
 
     def show_exercise(self, exercise_id):
         self.stop_preview()
@@ -266,17 +268,17 @@ class MainWindow(QMainWindow):
         self.guided.setChecked(settings.guided)
         self.guide_level.setCurrentIndex(max(0, self.guide_level.findData(settings.guide_level)))
         self.guide_level.setEnabled(self.exercise.mode == "pitch")
-        for widget in (self.bpm, self.subdivision, *self.tempo_buttons):
-            widget.setEnabled(not custom)
-            widget.setToolTip("Durações definidas pelo arquivo TXT" if custom else "")
+        self.subdivision.setEnabled(not custom)
+        self.subdivision.setToolTip("O ritmo relativo vem do TXT; ajuste a velocidade pelo BPM" if custom else "")
+        for widget in (self.bpm, *self.tempo_buttons):
+            widget.setEnabled(True)
+            widget.setToolTip("Tempo da nota = tempo do TXT × 120 / BPM" if custom else "")
         self._loading = False
         self.eyebrow.setText("I · PERSONALIZADO" if custom else f"{self.exercise.id:02d} / 39 · {self.exercise.category.upper()}")
         self.title.setText(self.exercise.name)
         self.title.setToolTip(self.exercise.name)
         self.objective.setText(self.exercise.objective)
         self.objective.setToolTip(self.exercise.objective)
-        if custom:
-            self.objective.setText(f"{len(self.exercise.vocal_notes)} notas · {sum(self.exercise.durations_ms) / 1000:g} s · tempos do arquivo")
         self.update_sequence()
         if custom:
             self.score_pages.setCurrentWidget(self.custom_plot)
@@ -384,7 +386,7 @@ class MainWindow(QMainWindow):
         self.preview_started = time.perf_counter() if self.exercise.mode == "breathing" else None
         self.preview_index = -1
         self.preview_timeline = (FixedTimeline(parse_exercise(self.exercise.vocal_notes), self.settings().note_duration_ms,
-                                              durations_ms=self.exercise.durations_ms)
+                                              durations_ms=self.settings().custom_durations_ms(self.exercise))
                                  if self.exercise.mode == "pitch" else None)
         self.listen_button.setText("Parar guia")
         self.status.setText("Preparando guia local…")

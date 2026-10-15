@@ -42,6 +42,8 @@ A aplicação preserva o gráfico inteiro após o fim, inclusive tentativas long
 
 A janela de execução foi revista para remover a rolagem externa: cabeçalho em duas linhas, gráfico expandido e controles fixos. Os eixos enquadram a sequência inteira e as amostras visíveis com margem, inclusive durante o treino. O relatório usa gráfico reduzido ao lado da tabela, com todas as colunas ajustadas à largura. A tabela mantém rolagem própria para sequências longas. A classificação detalhada de estabilidade está nos tooltips, junto ao desvio em cents.
 
+Na sessão I, o TXT define tempos na base de 120 BPM. `TrainingSettings.custom_durations_ms` calcula os tempos efetivos com o fator `120 / BPM`, usado na prévia, no relógio do treino, na segmentação de repetidas e nos gráficos. O arquivo original não é modificado. No relatório, sobreposições grossas coloridas usam os frames reais dentro dos segmentos alinhados à avaliação, preservando pausas e mostrando também os trechos fantasmas. As barras-alvo ficam intactas. O maior desvio confiável é destacado em vermelho somente abaixo de Boa; posições ausentes não produzem voz fictícia.
+
 ## Áudio e arquitetura
 
 `audio/capture.py` copia PCM no callback PortAudio e processa em worker. `audio/pitch.py` detecta frequência. `core/tracking.py` segmenta; `core/evaluation.py` alinha e avalia; `core/training.py` define o relógio musical. Qt atualiza o gráfico em timer de 20 ms sem executar FFT na thread da interface. `audio/playback.py` carrega e renderiza SoundFont em outro worker. MP3 usa QtMultimedia independente.
@@ -68,6 +70,8 @@ Ambiente exclusivo `.venv`, Python 3.13 x64. Versões instaladas e importadas:
 Todas as dependências Python transitivas constam em `requirements-lock.txt`. PySide6 instala componentes adicionais Qt, mas o aplicativo não usa WebEngine/HTML. Não foram instaladas bibliotecas de IA.
 
 ## Validação realizada
+
+Ajuste de BPM do personalizado e destaque da voz no relatório: **213 testes passaram**. Foram verificados tempos a 60, 120 e 180 BPM, persistência do andamento, prévia, gráfico, avaliação e repetição. Os destaques usam amostras reais, preservam lacunas de voz, não marcam notas boas como piores e não alteram dados, cor ou espessura das barras-alvo. O relatório foi inspecionado visualmente com execução sintética.
 
 Revisão da preparação, cores e importação TXT: **206 testes passaram**. A tela de preparação não tem rolagem externa; a tablatura se ajusta inteira e o player MP3 fica junto ao título. O seletor técnico de SoundFont saiu da interface, mantendo configuração local/variável de ambiente. As linhas do relatório recebem cores suaves segundo as classificações existentes, sem mudar os limiares.
 

@@ -57,8 +57,9 @@ class TrainingDialog(QDialog):
         guide_notes = parse_exercise([transpose_note(n, settings.transpose) for n in exercise.guide_notes if n]) if any(exercise.guide_notes) else []
         iterator = iter(guide_notes)
         self.guide_pattern = apply_guide_level([next(iterator) if n else None for n in exercise.guide_notes], settings.guide_level)
-        self.timeline = FixedTimeline(self.expected, settings.note_duration_ms, self.guide_pattern, settings.guided, exercise.durations_ms)
-        self.tracker = SegmentTracker(self.expected, settings.note_duration_ms, durations_ms=exercise.durations_ms)
+        self.durations_ms = settings.custom_durations_ms(exercise)
+        self.timeline = FixedTimeline(self.expected, settings.note_duration_ms, self.guide_pattern, settings.guided, self.durations_ms)
+        self.tracker = SegmentTracker(self.expected, settings.note_duration_ms, durations_ms=self.durations_ms)
         self.setWindowTitle(exercise.name + " · Treino assistido")
         self.resize(1180, 850)
         self.setMinimumSize(760, 460)
@@ -78,7 +79,7 @@ class TrainingDialog(QDialog):
         header.addWidget(title, 0, 0)
         level_label = next(label for key, label, _ in GUIDE_LEVELS if key == settings.guide_level)
         mode_label = level_label if exercise.mode == "pitch" else "Respiração"
-        tempo = "Tempos do arquivo" if exercise.durations_ms else f"{settings.bpm} bpm  |  {settings.subdivision}/pulso"
+        tempo = f"{settings.bpm} bpm · TXT base 120" if exercise.durations_ms else f"{settings.bpm} bpm  |  {settings.subdivision}/pulso"
         configuration = QLabel(f"{tempo}  |  {settings.transpose:+d} st  |  {mode_label}")
         configuration.setStyleSheet("color: #a9bdd3; font-size: 11px;")
         configuration.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
@@ -109,7 +110,7 @@ class TrainingDialog(QDialog):
         self.live_layout = QVBoxLayout(self.live_page)
         self.live_layout.setContentsMargins(0, 0, 0, 0)
         self.plot = PitchPlot()
-        self.plot.configure(self.expected, settings.note_duration_ms, exercise.durations_ms)
+        self.plot.configure(self.expected, settings.note_duration_ms, self.durations_ms)
         self.live_layout.addWidget(self.plot, 1)
         self.pages.addWidget(self.live_page)
         self.report_page = QWidget()
@@ -143,6 +144,7 @@ class TrainingDialog(QDialog):
         footer = QHBoxLayout()
         self.legend = QLabel("● Alvo   ● Voz   ● Posição")
         self.legend.setText('<span style="color:#ff5267">● Alvo</span> &nbsp; <span style="color:#70c9ff">● Voz</span> &nbsp; <span style="color:#3ee18f">● Posição</span>')
+        self.live_legend = self.legend.text()
         self.legend.setStyleSheet("font-size: 11px;")
         footer.addWidget(self.legend)
         footer.addStretch()
@@ -189,7 +191,8 @@ class TrainingDialog(QDialog):
         self.report = None
         self.frames = []
         self.now_ms = 0
-        self.tracker = SegmentTracker(self.expected, self.settings.note_duration_ms, durations_ms=self.exercise.durations_ms)
+        self.tracker = SegmentTracker(self.expected, self.settings.note_duration_ms, durations_ms=self.durations_ms)
+        self.legend.setText(self.live_legend)
         self.summary.clear()
         self.summary.hide()
         self.live.setVisible(self.exercise.mode == "pitch")
@@ -414,6 +417,8 @@ class TrainingDialog(QDialog):
         self.plot.setMaximumHeight(240)
         self.pages.setCurrentWidget(self.report_page)
         self.plot.update_frames(self.frames, self.timeline.end_t, review=True)
+        self.plot.highlight_report(report, self.frames)
+        self.legend.setText('Voz: <span style="color:#77cea0">● Boa/excelente</span> &nbsp; <span style="color:#e0c36a">● Atenção</span> &nbsp; <span style="color:#e4a16b">● Desvio</span> &nbsp; <span style="color:#ff6679">● Pior/erro</span> &nbsp; | &nbsp; Barras: alvo')
         self.progress.setValue(1000)
         self.retry_button.setEnabled(True)
         self.complete_button.setEnabled(True)
@@ -427,7 +432,7 @@ class TrainingDialog(QDialog):
         if self.guide:
             self.guide.close()
             self.guide = None
-        self.plot.configure(self.expected, self.settings.note_duration_ms, self.exercise.durations_ms)
+        self.plot.configure(self.expected, self.settings.note_duration_ms, self.durations_ms)
         self.prepare()
 
     def complete(self):

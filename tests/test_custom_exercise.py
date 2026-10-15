@@ -77,22 +77,27 @@ def test_custom_navigation_validation_preview_and_progress(qtbot, tmp_path, monk
     path = tmp_path / "score.txt"
     path.write_text("B3 D4 G4 E4\n500 800 1000 250")
     assert win.load_custom_file(path)
-    assert win.start_button.isEnabled() and not win.bpm.isEnabled()
+    assert win.start_button.isEnabled() and win.bpm.isEnabled()
+    win.bpm.setValue(60)
+    assert win.custom_plot.timeline.durations_ms == (1000,1600,2000,500)
+    assert "5.1 s" in win.objective.text()
     assert not win.demo.isVisible() and win.demo.player.source().isEmpty()
     win.start_preview()
     win.preview_timer.stop()
     win._preview_tick()
     start = win.preview_started
-    monkeypatch.setattr(main_window.time, "perf_counter", lambda: start + 1.29)
+    monkeypatch.setattr(main_window.time, "perf_counter", lambda: start + 2.59)
     win._preview_tick()
     assert win.preview_index == 1
-    monkeypatch.setattr(main_window.time, "perf_counter", lambda: start + 1.31)
+    monkeypatch.setattr(main_window.time, "perf_counter", lambda: start + 2.61)
     win._preview_tick()
     assert win.preview_index == 2
     win.stop_preview()
     win.complete_training()
     assert win.transpose.value() == 1
     assert win.exercise.durations_ms == (500,800,1000,250)
+    assert win.bpm.value() == 60
+    assert SettingsStore(win.store.path).training(win.exercise).bpm == 60
     path.write_text("B3 D4\n500")
     assert not win.load_custom_file(path)
     assert not win.start_button.isEnabled() and win.exercise is None
@@ -103,9 +108,10 @@ def test_custom_navigation_validation_preview_and_progress(qtbot, tmp_path, monk
     win.close()
 
 
-def test_custom_training_report_and_retry(qtbot):
+@pytest.mark.parametrize("bpm", [60,120,180])
+def test_custom_training_report_and_retry(qtbot, bpm):
     ex = parse_custom_exercise("B3 D4 G4 E4\n500 800 1000 600")
-    win = TrainingDialog(ex, TrainingSettings(), "acoustic_grand_piano", auto_start=False,
+    win = TrainingDialog(ex, TrainingSettings(bpm=bpm), "acoustic_grand_piano", auto_start=False,
                          guide_factory=FakeGuide, capture_factory=FakeCapture)
     qtbot.addWidget(win)
     win.guide, win.capture = FakeGuide(), FakeCapture()
@@ -120,10 +126,13 @@ def test_custom_training_report_and_retry(qtbot):
     win.tick()
     assert win.report.global_score.score == 100
     assert win.table.item(0, 0).background().color().name() == GRADE_COLORS["grade-excellent"][0]
-    assert win.plot.viewRange()[0][1] > 3
-    assert win.timeline.end_t == win.plot.timeline.end_t == 3000
+    assert win.plot.viewRange()[0][1] > 3000 * 120 / bpm / 1000
+    assert win.timeline.end_t == pytest.approx(3000 * 120 / bpm)
+    assert win.plot.timeline.end_t == win.timeline.end_t
+    assert len(win.plot.report_voice_traces) == 4 and win.plot.highlighted_index == -1
     win.retry()
-    assert win.tracker.durations_ms == ex.durations_ms
+    assert win.tracker.durations_ms == tuple(d * 120 / bpm for d in ex.durations_ms)
+    assert win.plot.report_voice_traces == [] and win.plot.target.isVisible()
     win.reject()
 
 

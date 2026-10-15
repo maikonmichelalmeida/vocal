@@ -1,5 +1,6 @@
 """Qt widgets for local tablatures, demo audio and the live pitch plot."""
 import math
+from bisect import bisect_left
 from pathlib import Path
 import numpy as np
 from PySide6.QtCore import Qt, QUrl, Signal
@@ -133,9 +134,16 @@ class PitchPlot(pg.PlotWidget):
         self.note_ms = 750
         self.lead_ms = 150
         self.timeline = FixedTimeline([], self.note_ms)
+        self.report_voice_traces = []
+        self.highlighted_index = -1
         self._live_y_range = None
 
     def configure(self, expected, note_ms, durations_ms=()):
+        for item in self.report_voice_traces:
+            self.removeItem(item)
+        self.report_voice_traces.clear()
+        self.highlighted_index = -1
+        self.target.show()
         self.timeline = FixedTimeline(expected, note_ms, durations_ms=durations_ms)
         self.expected, self.note_ms, self.lead_ms = expected, note_ms, self.timeline.lead_ms
         x, y = [], []
@@ -152,6 +160,44 @@ class PitchPlot(pg.PlotWidget):
         self.dot.setData([], [])
         self._live_y_range = None
         self.fit_complete([], 0)
+
+    def highlight_report(self, report, frames):
+        """Highlight the recorded voice, aligned to evaluated segments, never the targets."""
+        from vocal_app.core.evaluation import grade_tuning
+        colors = {"grade-excellent": "#77cea0", "grade-good": "#77cea0",
+                  "grade-attention": "#e0c36a", "grade-deviation": "#e4a16b",
+                  "grade-problem": "#ff6679", "grade-uncertain": "#9aa7ba", "grade-missing": "#9aa7ba"}
+        grades = [grade_tuning(row) for row in report.rows]
+        # Use the evaluator's largest reliable tuning error, but never mark a good note red.
+        worst = report.worst_index
+        if worst < 0 or grades[worst].rank < 3:
+            worst = -1
+        self.highlighted_index = worst
+        for item in self.report_voice_traces:
+            self.removeItem(item)
+        self.report_voice_traces.clear()
+        times = [frame.t for frame in frames]
+        for index, (row, grade) in enumerate(zip(report.rows, grades)):
+            if row is None:
+                continue  # No execution trace exists for a missing note.
+            samples = frames[bisect_left(times, row.segment.start_t):bisect_left(times, row.segment.end_t)]
+            if not samples:
+                continue
+            x, y, last = [], [], None
+            for frame in samples:
+                if last is not None and frame.t - last > 120:
+                    x.append(math.nan)
+                    y.append(math.nan)
+                x.append(frame.t / 1000)
+                y.append(frame.midi)
+                last = frame.t
+            highlighted = index == worst
+            color = "#ff6679" if highlighted else colors[grade.class_name]
+            pen = pg.mkPen(color, width=6 if highlighted else 4)
+            item = self.plot(x, y, pen=pen, connect="finite")
+            item.setToolTip(f"Voz · #{index + 1} · {row.expected.label} · {grade.label}" + (" · Maior desvio" if highlighted else ""))
+            item.setZValue(2)
+            self.report_voice_traces.append(item)
 
     def fit_complete(self, frames, now_ms, review=False):
         """Fit the entire score and every visible sample with explicit breathing room."""
