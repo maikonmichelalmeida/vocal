@@ -3,15 +3,37 @@ import math
 from bisect import bisect_left
 from pathlib import Path
 import numpy as np
-from PySide6.QtCore import Qt, QUrl, Signal
+from PySide6.QtCore import Qt, QUrl, Signal, QObject, QEvent
 from PySide6.QtGui import QPixmap, QPainter
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QSlider,
-    QGraphicsView, QGraphicsScene, QSizePolicy,
+    QGraphicsView, QGraphicsScene, QSizePolicy, QApplication,
 )
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 import pyqtgraph as pg
 from vocal_app.core.training import FixedTimeline
+
+
+class WindowSpaceShortcut(QObject):
+    """Reserve Space even when a button would normally consume it."""
+
+    def __init__(self, window, callback):
+        super().__init__(window)
+        self.window = window
+        self.callback = callback
+        QApplication.instance().installEventFilter(self)
+
+    def eventFilter(self, watched, event):
+        if (event.type() in (QEvent.Type.ShortcutOverride, QEvent.Type.KeyPress, QEvent.Type.KeyRelease)
+                and isinstance(watched, QWidget) and watched.window() is self.window
+                and QApplication.activeModalWidget() in (None, self.window)
+                and event.key() == Qt.Key.Key_Space
+                and event.modifiers() == Qt.KeyboardModifier.NoModifier):
+            event.accept()
+            if event.type() == QEvent.Type.KeyPress and not event.isAutoRepeat():
+                self.callback()
+            return True
+        return super().eventFilter(watched, event)
 
 
 class TablatureView(QGraphicsView):
@@ -145,16 +167,16 @@ class PitchPlot(pg.PlotWidget):
         self.highlighted_index = -1
         self.target.show()
         self.timeline = FixedTimeline(expected, note_ms, durations_ms=durations_ms)
-        self.expected, self.note_ms, self.lead_ms = expected, note_ms, self.timeline.lead_ms
+        self.expected, self.note_ms, self.lead_ms = self.timeline.expected, note_ms, self.timeline.lead_ms
         x, y = [], []
         for note in self.timeline.windows():
             x.extend([note.start_t / 1000, note.end_t / 1000, math.nan])
             y.extend([note.midi, note.midi, math.nan])
         self.target.setData(x, y)
-        if expected:
-            self.setYRange(min(n.midi for n in expected) - 2, max(n.midi for n in expected) + 2)
+        if self.expected:
+            self.setYRange(min(n.midi for n in self.expected) - 2, max(n.midi for n in self.expected) + 2)
             from vocal_app.core.notes import midi_to_note
-            ticks = sorted(set(n.midi for n in expected))
+            ticks = sorted(set(n.midi for n in self.expected))
             self.getAxis("left").setTicks([[(m, midi_to_note(m)) for m in ticks]])
         self.voice.setData([], [])
         self.dot.setData([], [])
@@ -221,7 +243,7 @@ class PitchPlot(pg.PlotWidget):
         # A NaN breaks lines at silence and hidden ghost positions; no interpolation across gaps.
         x, y, last = [], [], None
         for frame in frames:
-            if (frame.hidden_during_live and not review) or (last is not None and frame.t - last > 120):
+            if (frame.hidden_during_live and not review) or (last is not None and (frame.t - last > 120 or self.timeline.rests_between(last, frame.t))):
                 x.append(math.nan)
                 y.append(math.nan)
             if review or not frame.hidden_during_live:

@@ -155,9 +155,9 @@ def test_timeline_guide_lead_ghosts_and_review_contract():
 
 @pytest.mark.parametrize('action,finished,expected',[('retry',True,2),('close',True,2),('complete',False,2),('complete',True,3)])
 def test_only_completion_progresses(action,finished,expected):
-    assert progressed_transpose(2,'ascending',action,finished) == expected
-    assert progressed_transpose(8,'ascending','complete',True) == 8
-    assert progressed_transpose(-8,'descending','complete',True) == -8
+    assert progressed_transpose(2,'ascending',action,finished,score=100) == expected
+    assert progressed_transpose(8,'ascending','complete',True,score=100) == 9
+    assert progressed_transpose(-8,'descending','complete',True,score=100) == -9
 
 
 REFERENCE = json.loads((Path(__file__).parent/'fixtures'/'js_tracker_reference.json').read_text(encoding='utf-8'))

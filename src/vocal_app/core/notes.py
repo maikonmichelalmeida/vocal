@@ -86,6 +86,20 @@ def parse_guide_pattern(notes: Sequence[str | None]) -> list[ExpectedNote | None
             for i, token in enumerate(notes)]
 
 
+def parse_score(notes: Sequence[str | None], transpose: int = 0) -> list[ExpectedNote | None]:
+    """Preserve rest slots while numbering only the notes that will be evaluated."""
+    positions = []
+    index = 0
+    for token in notes:
+        if token is None:
+            positions.append(None)
+        else:
+            label = transpose_note(token, transpose)
+            positions.append(ExpectedNote(index, label, note_to_midi(label)))
+            index += 1
+    return positions
+
+
 # Explicit musical names make these usable by integrations without JS naming.
 note_name_to_midi = note_to_midi
 hz_to_midi_float = hz_to_midi

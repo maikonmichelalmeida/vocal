@@ -4,6 +4,7 @@ import re
 
 from .catalog import Exercise
 from .notes import note_to_midi, midi_to_note
+from .transposition import transpose_limits
 
 
 def parse_custom_exercise(text: str, name: str = "Personalizado") -> Exercise:
@@ -17,11 +18,15 @@ def parse_custom_exercise(text: str, name: str = "Personalizado") -> Exercise:
         raise ValueError("Use no máximo 256 notas por exercício.")
     notes = []
     for token in tokens:
+        if token.upper() == "P":
+            notes.append(None)
+            continue
         midi = note_to_midi(token)
-        # Leave room for the application's full ±8 semitone transposition.
-        if not 8 <= midi <= 119:
+        if not 0 <= midi <= 127:
             raise ValueError(f"Nota fora da faixa instrumental suportada: {token}.")
         notes.append(midi_to_note(midi))
+    if not any(notes):
+        raise ValueError("O exercício precisa conter pelo menos uma nota além das pausas P.")
     if any(not re.fullmatch(r"[0-9]{1,5}", value) for value in times):
         raise ValueError("Os tempos devem ser números inteiros positivos em milissegundos, como 500.")
     durations = tuple(int(value) for value in times)
@@ -29,8 +34,10 @@ def parse_custom_exercise(text: str, name: str = "Personalizado") -> Exercise:
         raise ValueError("Cada tempo deve estar entre 1 e 60000 milissegundos.")
     if sum(durations) > 600000:
         raise ValueError("O exercício deve durar no máximo 10 minutos.")
-    return Exercise(40, name, "Personalizado", "Tempos definidos no arquivo TXT", " ".join(notes),
+    exercise = Exercise(40, name, "Personalizado", "Tempos definidos no arquivo TXT", " ".join(n or "P" for n in notes),
                     "", "", None, 120, 1, tuple(notes), tuple(notes), durations_ms=durations)
+    transpose_limits(exercise)
+    return exercise
 
 
 def load_custom_exercise(path: str | Path) -> Exercise:

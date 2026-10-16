@@ -95,15 +95,15 @@ def test_preferences_per_exercise_and_progress_only_complete(window, tmp_path):
     assert not window.guided.isChecked()
     store = SettingsStore(window.store.path)
     assert store.training(window.exercise).transpose == 3
-    window.complete_training()
+    window.complete_training(100)
     assert window.transpose.value() == 4
 
 
 @pytest.mark.parametrize("action,finished,expected", [("retry",True,3),("close",True,3),("complete",False,3),("complete",True,4)])
 def test_settings_actions(action, finished, expected):
-    assert TrainingSettings(transpose=3).after_action(action, finished).transpose == expected
-    assert TrainingSettings(transpose=8).after_action("complete", True).transpose == 8
-    assert TrainingSettings(transpose=-8, direction_up=False).after_action("complete", True).transpose == -8
+    assert TrainingSettings(transpose=3).after_action(action, finished, score=100).transpose == expected
+    assert TrainingSettings(transpose=8).after_action("complete", True, score=100).transpose == 9
+    assert TrainingSettings(transpose=-8, direction_up=False).after_action("complete", True, score=100).transpose == -9
 
 
 def test_complete_synthetic_training_report_and_retry(qtbot):
@@ -134,7 +134,7 @@ def test_complete_synthetic_training_report_and_retry(qtbot):
 def test_silence_scores_zero_and_complete_emits_once(qtbot):
     win = dialog(qtbot)
     emissions = []
-    win.completed.connect(lambda: emissions.append(True))
+    win.completed.connect(lambda score: emissions.append(score))
     win.complete()
     assert not emissions
     win.guide, win.capture = FakeGuide(), FakeCapture()
@@ -146,7 +146,7 @@ def test_silence_scores_zero_and_complete_emits_once(qtbot):
     assert win.report.global_score.score == 0
     win.complete()
     win.complete()
-    assert emissions == [True]
+    assert emissions == [0]
 
 
 def test_breathing_needs_no_bank_or_microphone(qtbot):

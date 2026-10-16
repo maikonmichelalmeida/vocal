@@ -36,5 +36,7 @@ def guide_mask(length: int, level: str = "integral") -> tuple[bool, ...]:
     return tuple(index in audible for index in range(length))
 
 
-def apply_guide_level(notes: Sequence[T | None], level: str = "integral") -> list[T | None]:
-    return [note if audible else None for note, audible in zip(notes, guide_mask(len(notes), level))]
+def apply_guide_level(notes: Sequence[T | None], level: str = "integral", rest_positions=()) -> list[T | None]:
+    rests = set(rest_positions)
+    mask = iter(guide_mask(len(notes) - len(rests), level))
+    return [None if i in rests else note if next(mask) else None for i, note in enumerate(notes)]

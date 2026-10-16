@@ -10,11 +10,12 @@ from PySide6.QtWidgets import (
 from vocal_app.core.catalog import load_catalog
 from vocal_app.core.custom_exercise import load_custom_exercise
 from vocal_app.core.training import FixedTimeline
+from vocal_app.core.transposition import transpose_limits, TRAINING_RANGE_LABEL
 from vocal_app.core.settings import SettingsStore, TrainingSettings
 from vocal_app.core.guide import GUIDE_LEVELS, apply_guide_level
-from vocal_app.core.notes import note_to_midi, transpose_note, parse_exercise
+from vocal_app.core.notes import note_to_midi, transpose_note, parse_score
 from vocal_app.audio.playback import GuidePlayer
-from vocal_app.ui.widgets import TablatureView, DemoPlayer, PitchPlot
+from vocal_app.ui.widgets import TablatureView, DemoPlayer, PitchPlot, WindowSpaceShortcut
 
 
 STYLE = """
@@ -145,9 +146,10 @@ class MainWindow(QMainWindow):
         self.layout.addWidget(self.zoom_controls)
         controls = QGroupBox("Treino principal")
         grid = QGridLayout(controls)
-        self.start_button = QPushButton("Início")
+        self.start_button = QPushButton("Início · Espaço")
         self.start_button.setObjectName("primary")
         self.start_button.clicked.connect(self.start_training)
+        self.space_shortcut = WindowSpaceShortcut(self, self.start_training)
         self.listen_button = QPushButton("Ouvir guia")
         self.listen_button.clicked.connect(self.start_preview)
         grid.addWidget(self.start_button, 0, 0)
@@ -181,12 +183,13 @@ class MainWindow(QMainWindow):
             self.subdivision.addItem(f"{n} nota(s) / pulso", n)
         grid.addWidget(self.subdivision, 1, 2)
         self.transpose = QSpinBox()
-        self.transpose.setRange(-8, 8)
+        self.transpose.setRange(0, 0)  # Replaced by the current score's bounds when loaded.
         self.transpose.setSuffix(" semitons")
         grid.addWidget(self.transpose, 1, 3, 1, 2)
         self.direction = QComboBox()
-        self.direction.addItem("Concluir: subir ↑", True)
-        self.direction.addItem("Concluir: descer ↓", False)
+        self.direction.addItem("Progredir: subir ↑", True)
+        self.direction.addItem("Progredir: descer ↓", False)
+        self.direction.setToolTip("Progressão automática com resultado de 75/100 ou mais")
         grid.addWidget(self.direction, 1, 5)
         self.guide_level = QComboBox()
         self.guide_level.setObjectName("guideLevel")
@@ -237,17 +240,19 @@ class MainWindow(QMainWindow):
         if self.exercise.mode == "breathing":
             self.sequence.setText("Respiração · 30 segundos · sem avaliação de pitch")
         else:
-            shifted = [transpose_note(n, self.transpose.value()) for n in self.exercise.vocal_notes if n]
+            shifted = [transpose_note(n, self.transpose.value()) if n else "P" for n in self.exercise.vocal_notes]
             self.sequence.setText("Notas  ·  " + "  ".join(shifted))
         self.variation.setText("Variação original  ·  " + self.exercise.variation)
         self.sequence.setToolTip(self.sequence.text() + "\n" + self.variation.text())
-        if self.exercise.durations_ms:
-            expected = parse_exercise(shifted)
+        if self.exercise.durations_ms or self.exercise.rhythm:
+            expected = parse_score(self.exercise.vocal_notes, self.transpose.value())
             durations = self.settings().custom_durations_ms(self.exercise)
             self.custom_plot.configure(expected, self.settings().note_duration_ms, durations)
             self.custom_plot.cursor.hide()
             self.sequence.setToolTip(self.sequence.text() + "\nTempos atuais (ms): " + "  ".join(f"{d:g}" for d in durations))
-            self.objective.setText(f"{len(durations)} notas · {sum(durations) / 1000:g} s · {self.bpm.value()} bpm (TXT: base 120)")
+            count = sum(n is not None for n in expected)
+            suffix = " · TXT: base 120" if self.exercise.durations_ms else " · 5 repetições"
+            self.objective.setText(f"{count} notas · {len(expected) - count} pausas · {sum(durations) / 1000:g} s · {self.bpm.value()} bpm{suffix}")
 
     def show_exercise(self, exercise_id):
         self.stop_preview()
@@ -261,6 +266,10 @@ class MainWindow(QMainWindow):
         self._loading = True
         self.exercise_select.setCurrentIndex(self.exercise_select.findData(exercise_id))
         settings = self.store.training(self.exercise)
+        lower, upper = transpose_limits(self.exercise)
+        self.transpose.setRange(lower, upper)
+        self.transpose.setEnabled(lower != upper)
+        self.transpose.setToolTip(f"Notas finais entre {TRAINING_RANGE_LABEL} · deslocamento de {lower:+d} a {upper:+d} semitons")
         self.bpm.setValue(settings.bpm)
         self.subdivision.setCurrentIndex(settings.subdivision - 1)
         self.transpose.setValue(settings.transpose)
@@ -280,7 +289,7 @@ class MainWindow(QMainWindow):
         self.objective.setText(self.exercise.objective)
         self.objective.setToolTip(self.exercise.objective)
         self.update_sequence()
-        if custom:
+        if custom or self.exercise.rhythm:
             self.score_pages.setCurrentWidget(self.custom_plot)
         elif self.exercise.image:
             self.tab_view.load(self.catalog.asset_path(self.exercise.image))
@@ -317,7 +326,7 @@ class MainWindow(QMainWindow):
         self.sequence.clear()
         self.sequence.setToolTip("")
         self.zoom_controls.hide()
-        self.placeholder.setText("Selecione um arquivo .txt para começar.\n\nExemplo:\nB3 D4 G4 E4\n500 500 500 500\n\nTempos em milissegundos, um por nota.")
+        self.placeholder.setText("Selecione um arquivo .txt para começar.\n\nExemplo com pausa:\nC3 P D3\n1000 500 1000\n\nP = pausa · tempos em milissegundos na base de 120 bpm.")
         self.score_pages.setCurrentWidget(self.placeholder)
         self.status.setText("Aguardando arquivo .txt")
 
@@ -385,7 +394,7 @@ class MainWindow(QMainWindow):
         self.preview_future = None if self.exercise.mode == "breathing" else self.preview.prepare(self.soundfont_path(), self.instrument.currentData())
         self.preview_started = time.perf_counter() if self.exercise.mode == "breathing" else None
         self.preview_index = -1
-        self.preview_timeline = (FixedTimeline(parse_exercise(self.exercise.vocal_notes), self.settings().note_duration_ms,
+        self.preview_timeline = (FixedTimeline(parse_score(self.exercise.vocal_notes), self.settings().note_duration_ms,
                                               durations_ms=self.settings().custom_durations_ms(self.exercise))
                                  if self.exercise.mode == "pitch" else None)
         self.listen_button.setText("Parar guia")
@@ -428,10 +437,11 @@ class MainWindow(QMainWindow):
                 self.preview.click(accent=index % 4 == 0)
             else:
                 self.preview.stop()
-                note = apply_guide_level(self.exercise.guide_notes, settings.guide_level)[index]
+                rests = [i for i, n in enumerate(self.exercise.vocal_notes) if n is None]
+                note = apply_guide_level(self.exercise.guide_notes, settings.guide_level, rests)[index]
                 if note:
                     self.preview.note_on(note_to_midi(note) + settings.transpose, velocity=127, duration=duration / 1000 * .9)
-            self.status.setText(f"Prévia · {index + 1}/{count}")
+            self.status.setText("Prévia · pausa" if self.exercise.mode == "pitch" and self.exercise.vocal_notes[index] is None else f"Prévia · {index + 1}/{count}")
 
     def stop_preview(self):
         self.preview_timer.stop()
@@ -442,22 +452,31 @@ class MainWindow(QMainWindow):
         self.listen_button.setText("Ouvir guia")
 
     def start_training(self):
-        if self.exercise is None:
+        if self.exercise is None or self.dialog is not None:
             return
         from vocal_app.ui.training_dialog import TrainingDialog
         self.stop_preview()
         self.demo.player.stop()
         self.save_controls()
         self.dialog = TrainingDialog(self.exercise, self.settings(), self.instrument.currentData(), self.soundfont_path(), parent=self)
-        self.dialog.completed.connect(self.complete_training)
+        dialog = self.dialog
+        self.dialog.attempt_finished.connect(lambda score: self.complete_training(score, dialog.settings))
         self.dialog.finished.connect(lambda *_: setattr(self, "dialog", None))
         self.dialog.open()
 
-    def complete_training(self):
-        settings = self.settings().after_action("complete", finished=True)
+    def complete_training(self, score=0, attempt_settings=None):
+        before = attempt_settings or self.settings()
+        settings = before.after_action("complete", finished=True, exercise=self.exercise, score=score)
         self.store.set_training(self.exercise.id, settings)
         self.show_exercise(self.exercise.id)
-        self.status.setText(f"Concluído · próxima transposição: {settings.transpose:+d} semitons.")
+        if self.exercise.mode == "breathing":
+            self.status.setText("Treino respiratório concluído.")
+        elif score < 75:
+            self.status.setText(f"Concluído · {score}/100: tom mantido. A progressão ocorre a partir de 75/100.")
+        elif settings.transpose == before.transpose:
+            self.status.setText(f"Concluído · limite de tom atingido ({settings.transpose:+d} semitons, faixa {TRAINING_RANGE_LABEL}).")
+        else:
+            self.status.setText(f"Concluído · próxima transposição: {settings.transpose:+d} semitons.")
 
     def closeEvent(self, event):
         if self.dialog:

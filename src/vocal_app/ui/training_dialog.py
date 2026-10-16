@@ -12,12 +12,12 @@ from PySide6.QtWidgets import (
 )
 from vocal_app.audio.capture import CaptureEngine
 from vocal_app.audio.playback import GuidePlayer
-from vocal_app.core.notes import parse_exercise, transpose_note, nearest_note
+from vocal_app.core.notes import parse_score, nearest_note
 from vocal_app.core.tracking import SegmentTracker
 from vocal_app.core.training import FixedTimeline
 from vocal_app.core.guide import GUIDE_LEVELS, apply_guide_level
 from vocal_app.core.evaluation import evaluate
-from vocal_app.ui.widgets import PitchPlot
+from vocal_app.ui.widgets import PitchPlot, WindowSpaceShortcut
 
 
 # Muted fills retain readable text; labels communicate the grade without color.
@@ -33,11 +33,13 @@ GRADE_COLORS = {
 
 
 class TrainingDialog(QDialog):
-    completed = Signal()
+    completed = Signal(int)
+    attempt_finished = Signal(int)
 
     def __init__(self, exercise, settings, instrument, soundfont=None, parent=None,
                  capture_factory=CaptureEngine, guide_factory=GuidePlayer, auto_start=True):
         super().__init__(parent)
+        settings = settings.for_exercise(exercise)
         self.exercise, self.settings = exercise, settings
         self.instrument, self.soundfont = instrument, soundfont
         self.capture_factory, self.guide_factory = capture_factory, guide_factory
@@ -53,13 +55,9 @@ class TrainingDialog(QDialog):
         self.now_ms = 0
         self.last_guide_index = -1
         self.last_beat = -1
-        self.expected = parse_exercise([transpose_note(n, settings.transpose) for n in exercise.vocal_notes if n]) if exercise.mode == "pitch" else []
-        guide_notes = parse_exercise([transpose_note(n, settings.transpose) for n in exercise.guide_notes if n]) if any(exercise.guide_notes) else []
-        iterator = iter(guide_notes)
-        self.guide_pattern = apply_guide_level([next(iterator) if n else None for n in exercise.guide_notes], settings.guide_level)
-        self.durations_ms = settings.custom_durations_ms(exercise)
-        self.timeline = FixedTimeline(self.expected, settings.note_duration_ms, self.guide_pattern, settings.guided, self.durations_ms)
-        self.tracker = SegmentTracker(self.expected, settings.note_duration_ms, durations_ms=self.durations_ms)
+        self.configure_score(settings)
+        self.next_settings = settings
+        self._progression_published = False
         self.setWindowTitle(exercise.name + " · Treino assistido")
         self.resize(1180, 850)
         self.setMinimumSize(760, 460)
@@ -77,10 +75,7 @@ class TrainingDialog(QDialog):
         title.setToolTip(exercise.objective)
         title.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Preferred)
         header.addWidget(title, 0, 0)
-        level_label = next(label for key, label, _ in GUIDE_LEVELS if key == settings.guide_level)
-        mode_label = level_label if exercise.mode == "pitch" else "Respiração"
-        tempo = f"{settings.bpm} bpm · TXT base 120" if exercise.durations_ms else f"{settings.bpm} bpm  |  {settings.subdivision}/pulso"
-        configuration = QLabel(f"{tempo}  |  {settings.transpose:+d} st  |  {mode_label}")
+        configuration = self.configuration = QLabel(self.configuration_text())
         configuration.setStyleSheet("color: #a9bdd3; font-size: 11px;")
         configuration.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         configuration.setToolTip("Sequência: " + "  ".join(n.label for n in self.expected))
@@ -110,7 +105,7 @@ class TrainingDialog(QDialog):
         self.live_layout = QVBoxLayout(self.live_page)
         self.live_layout.setContentsMargins(0, 0, 0, 0)
         self.plot = PitchPlot()
-        self.plot.configure(self.expected, settings.note_duration_ms, self.durations_ms)
+        self.plot.configure(self.positions, settings.note_duration_ms, self.durations_ms)
         self.live_layout.addWidget(self.plot, 1)
         self.pages.addWidget(self.live_page)
         self.report_page = QWidget()
@@ -155,11 +150,15 @@ class TrainingDialog(QDialog):
         footer.addWidget(self.progress)
         outer.addLayout(footer)
         actions = QHBoxLayout()
-        self.retry_button = QPushButton("Tentar novamente")
+        self.retry_button = QPushButton("Repetir tom")
         self.retry_button.clicked.connect(self.retry)
         self.complete_button = QPushButton("Concluir")
-        self.complete_button.setObjectName("primary")
         self.complete_button.clicked.connect(self.complete)
+        self.next_button = QPushButton("Próxima · Espaço")
+        self.next_button.setObjectName("primary")
+        self.next_button.clicked.connect(self.next_attempt)
+        self.next_button.setEnabled(False)
+        self.space_shortcut = WindowSpaceShortcut(self, self.on_space)
         self.close_button = QPushButton("Cancelar / fechar")
         self.close_button.clicked.connect(self.reject)
         self.unaccompanied_button = QPushButton("Treinar sem referência instrumental")
@@ -167,7 +166,7 @@ class TrainingDialog(QDialog):
         self.unaccompanied_button.hide()
         actions.addWidget(self.unaccompanied_button)
         actions.addStretch()
-        for button in (self.retry_button, self.complete_button, self.close_button):
+        for button in (self.retry_button, self.next_button, self.complete_button, self.close_button):
             actions.addWidget(button)
         outer.addLayout(actions)
         self.retry_button.setEnabled(False)
@@ -184,14 +183,40 @@ class TrainingDialog(QDialog):
         available = self.screen().availableGeometry()
         self.resize(min(1180, available.width() - 40), min(850, available.height() - 50))
 
+    def configure_score(self, settings):
+        self.settings = settings = settings.for_exercise(self.exercise)
+        exercise = self.exercise
+        self.positions = parse_score(exercise.vocal_notes, settings.transpose) if exercise.mode == "pitch" else []
+        self.expected = [note for note in self.positions if note is not None]
+        guide_notes = parse_score(exercise.guide_notes, settings.transpose)
+        rests = [i for i, note in enumerate(self.positions) if note is None]
+        self.guide_pattern = apply_guide_level(guide_notes, settings.guide_level, rests)
+        self.initial_reference = next((note for note in self.guide_pattern if note is not None), None)
+        self.durations_ms = settings.custom_durations_ms(exercise)
+        self.timeline = FixedTimeline(self.positions, settings.note_duration_ms, self.guide_pattern, settings.guided, self.durations_ms)
+        self.tracker = SegmentTracker(self.expected, settings.note_duration_ms, durations_ms=self.timeline.note_durations_ms)
+        self.last_event_t = -1
+
+    def configuration_text(self):
+        settings = self.settings
+        level = next(label for key, label, _ in GUIDE_LEVELS if key == settings.guide_level)
+        mode = level if self.exercise.mode == "pitch" else "Respiração"
+        tempo = f"{settings.bpm} bpm · TXT base 120" if self.exercise.durations_ms else f"{settings.bpm} bpm | {settings.subdivision}/pulso"
+        return f"{tempo} | {settings.transpose:+d} st | {mode}"
+
     def prepare(self):
         if self.state == "CLOSED":
             return
         self.state = "PREPARING"
+        self._progression_published = False
+        self.next_button.setEnabled(False)
+        self.configuration.setText(self.configuration_text())
+        self.configuration.setToolTip("Sequência: " + "  ".join(n.label for n in self.expected))
         self.report = None
         self.frames = []
         self.now_ms = 0
-        self.tracker = SegmentTracker(self.expected, self.settings.note_duration_ms, durations_ms=self.durations_ms)
+        self.tracker = SegmentTracker(self.expected, self.settings.note_duration_ms, durations_ms=self.timeline.note_durations_ms)
+        self.last_event_t = -1
         self.legend.setText(self.live_legend)
         self.summary.clear()
         self.summary.hide()
@@ -222,8 +247,8 @@ class TrainingDialog(QDialog):
         self.phase_started = time.perf_counter()
         self.last_count = -1
         self.reference_delay = .47 if self.expected and self.settings.guided and not self.allow_unaccompanied else 0
-        if self.reference_delay and self.guide_pattern[0]:
-            self.guide.note_on(self.guide_pattern[0].midi, 127, duration=2.12)
+        if self.reference_delay and self.initial_reference:
+            self.guide.note_on(self.initial_reference.midi, 127, duration=2.12)
         self.cue.setText("Referência inicial" if self.reference_delay else "Prepare a entrada")
         self.status.setText("")
 
@@ -246,8 +271,8 @@ class TrainingDialog(QDialog):
             count = int(elapsed / .3)
             if elapsed >= 1.2:
                 self.guide.stop()
-                if self.expected and not self.settings.guided and not self.allow_unaccompanied and self.guide_pattern[0]:
-                    self.guide.note_on(self.guide_pattern[0].midi, 127, duration=.42)
+                if self.expected and not self.settings.guided and not self.allow_unaccompanied and self.initial_reference:
+                    self.guide.note_on(self.initial_reference.midi, 127, duration=.42)
                     self.state = "INITIAL_REFERENCE"
                     self.phase_started = time.perf_counter()
                     self.cue.setText("Nota inicial · " + self.expected[0].label)
@@ -308,6 +333,9 @@ class TrainingDialog(QDialog):
 
     def consume_events(self):
         for event in self.capture.drain_frames():
+            for rest_start in self.timeline.rests_between(self.last_event_t, event.t):
+                self.tracker.deliberate_rest(rest_start)
+            self.last_event_t = event.t
             index = self.timeline.target_index_at(event.t)
             if index < 0:
                 continue
@@ -344,8 +372,11 @@ class TrainingDialog(QDialog):
                 self.guide.note_on(reference.midi, 127, duration=self.timeline.durations_ms[guide_index] / 1000 * 1.08)
         if index >= 0:
             next_label = self.expected[index + 1].label if index + 1 < len(self.expected) else "fim"
-            ghost = " · fantasma" if self.guide_pattern[index] is None else ""
+            ghost = " · fantasma" if self.guide_pattern[self.timeline.note_positions[index]] is None else ""
             self.cue.setText(f"{index + 1}/{len(self.expected)} · {self.expected[index].label}{ghost}   →   {next_label}")
+        elif self.timeline.is_rest(self.now_ms):
+            self.cue.setText("Pausa")
+            self.live.setText("Pausa · aguarde a próxima nota")
         else:
             self.cue.setText("Entre na primeira nota…")
         self.progress.setValue(min(1000, round(self.now_ms / self.timeline.end_t * 1000)))
@@ -377,6 +408,7 @@ class TrainingDialog(QDialog):
         self.status.setText("")
         self.retry_button.setEnabled(True)
         self.complete_button.setEnabled(True)
+        self.publish_progression(0)
 
     def render_report(self, report):
         self.timer.stop()
@@ -422,6 +454,31 @@ class TrainingDialog(QDialog):
         self.progress.setValue(1000)
         self.retry_button.setEnabled(True)
         self.complete_button.setEnabled(True)
+        self.publish_progression(score.score)
+
+    def publish_progression(self, score):
+        if self._progression_published:
+            return
+        self._progression_published = True
+        self.next_settings = self.settings.after_action("complete", True, self.exercise, score=score)
+        changed = self.next_settings.transpose != self.settings.transpose
+        self.next_button.setText("Próxima · Espaço" if changed else "Repetir · Espaço")
+        self.next_button.setEnabled(True)
+        if self.exercise.mode == "pitch":
+            self.summary.setText(self.summary.text() + f" · Próximo tom: {self.next_settings.transpose:+d} st")
+        self.attempt_finished.emit(score)
+
+    def next_attempt(self):
+        if self.state != "DONE":
+            return
+        self.configure_score(self.next_settings)
+        self.retry()
+
+    def on_space(self):
+        if self.state == "DONE":
+            self.next_attempt()
+        elif self.state == "ERROR":
+            self.retry()
 
     def retry(self):
         if self.state not in ("DONE", "ERROR"):
@@ -432,14 +489,14 @@ class TrainingDialog(QDialog):
         if self.guide:
             self.guide.close()
             self.guide = None
-        self.plot.configure(self.expected, self.settings.note_duration_ms, self.durations_ms)
+        self.plot.configure(self.positions, self.settings.note_duration_ms, self.durations_ms)
         self.prepare()
 
     def complete(self):
         if self.state != "DONE":
             return
         self.state = "COMPLETED"
-        self.completed.emit()
+        self.completed.emit(self.report.global_score.score if self.report else 0)
         self.accept()
 
     def done(self, result):
@@ -452,9 +509,3 @@ class TrainingDialog(QDialog):
                 self.guide.close()
             self.executor.shutdown(wait=False)
         super().done(result)
-
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key.Key_Space and self.state in ("LISTENING", "COUNTDOWN", "BREATHING"):
-            self.reject()
-        else:
-            super().keyPressEvent(event)

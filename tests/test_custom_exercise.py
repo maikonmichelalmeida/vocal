@@ -93,7 +93,7 @@ def test_custom_navigation_validation_preview_and_progress(qtbot, tmp_path, monk
     win._preview_tick()
     assert win.preview_index == 2
     win.stop_preview()
-    win.complete_training()
+    win.complete_training(100)
     assert win.transpose.value() == 1
     assert win.exercise.durations_ms == (500,800,1000,250)
     assert win.bpm.value() == 60

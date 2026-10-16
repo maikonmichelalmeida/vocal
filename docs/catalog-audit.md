@@ -46,6 +46,10 @@ A origem é separada do destino e nunca recebe escritas pelo script.
   andamentos por texto e comunica configurações ao pai. Esse mecanismo não
   foi migrado: há exatamente um treino principal por exercício.
 
+## Correção desktop: Three-Note Run
+
+A pedido do usuário, o carregador expande o motivo original de três notas do ID 27 em cinco repetições, intercaladas por quatro pausas de meia posição: 15 notas avaliadas. O ritmo acompanha BPM e subdivisão. A preparação mostra a sequência completa em gráfico; a imagem original de um motivo continua disponível para ampliação. Os JSON extraídos, os caminhos dos recursos e a referência web permanecem intactos. O teste de regressão registra explicitamente essa exceção à configuração JavaScript original.
+
 ## Integridade dos arquivos
 
 Foram copiados 39 MP3 e 36 PNG. `assets/manifest.json` vincula explicitamente

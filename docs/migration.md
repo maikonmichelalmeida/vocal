@@ -44,6 +44,10 @@ A janela de execução foi revista para remover a rolagem externa: cabeçalho em
 
 Na sessão I, o TXT define tempos na base de 120 BPM. `TrainingSettings.custom_durations_ms` calcula os tempos efetivos com o fator `120 / BPM`, usado na prévia, no relógio do treino, na segmentação de repetidas e nos gráficos. O arquivo original não é modificado. No relatório, sobreposições grossas coloridas usam os frames reais dentro dos segmentos alinhados à avaliação, preservando pausas e mostrando também os trechos fantasmas. As barras-alvo ficam intactas. O maior desvio confiável é destacado em vermelho somente abaixo de Boa; posições ausentes não produzem voz fictícia.
 
+As pausas explícitas `P` do TXT ocupam posições no relógio, mas não viram alvos nem entram na cobertura da avaliação. O rastreador encerra a nota na pausa deliberada, mesmo quando ela é menor que a tolerância normal de silêncio, e o gráfico interrompe o traço. As máscaras fantasmas contam somente as notas. O Three-Note Run expande o motivo original em cinco grupos com quatro pausas de meia posição; essa correção desktop é documentada na auditoria do catálogo.
+
+Todos os exercícios de pitch calculam limites de transposição pelas notas extremas, dentro de C2–D6 (notas inteiras na faixa de 65–1200 Hz do detector). Ao concluir uma tentativa com score >=75, o relatório publica uma única progressão de semitom e atualiza a preferência e o controle da janela principal. Espaço inicia a próxima tentativa na mesma janela; abaixo de 75, repete o tom. Repetir tom preserva o tom tocado; Concluir/fechar não reaplica a progressão. Espaço durante o treino é ignorado. A direção, os limites e o score são compartilhados pela janela principal e pelo diálogo.
+
 ## Áudio e arquitetura
 
 `audio/capture.py` copia PCM no callback PortAudio e processa em worker. `audio/pitch.py` detecta frequência. `core/tracking.py` segmenta; `core/evaluation.py` alinha e avalia; `core/training.py` define o relógio musical. Qt atualiza o gráfico em timer de 20 ms sem executar FFT na thread da interface. `audio/playback.py` carrega e renderiza SoundFont em outro worker. MP3 usa QtMultimedia independente.
@@ -70,6 +74,8 @@ Ambiente exclusivo `.venv`, Python 3.13 x64. Versões instaladas e importadas:
 Todas as dependências Python transitivas constam em `requirements-lock.txt`. PySide6 instala componentes adicionais Qt, mas o aplicativo não usa WebEngine/HTML. Não foram instaladas bibliotecas de IA.
 
 ## Validação realizada
+
+Progressão automática, transposição por extensão e pausas: **283 testes passaram**. A cobertura inclui o limiar 74/75/100, subida e descida, persistência imediata, Espaço com foco no botão Concluir, duas tentativas seguidas sem progressão duplicada, repetição no mesmo tom e limites de todos os 39 exercícios. Pausas curtas e notas repetidas foram verificadas com frames sintéticos; o Three-Note Run produz 15 resultados, sem contar as quatro pausas como ausências. A preparação e o relatório completo foram inspecionados visualmente, incluindo a retomada pelo Espaço. Nenhum teste desta revisão abriu microfone ou reproduziu som nos alto-falantes.
 
 Ajuste de BPM do personalizado e destaque da voz no relatório: **213 testes passaram**. Foram verificados tempos a 60, 120 e 180 BPM, persistência do andamento, prévia, gráfico, avaliação e repetição. Os destaques usam amostras reais, preservam lacunas de voz, não marcam notas boas como piores e não alteram dados, cor ou espessura das barras-alvo. O relatório foi inspecionado visualmente com execução sintética.
 

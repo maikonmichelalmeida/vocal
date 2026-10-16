@@ -22,8 +22,13 @@ def test_every_principal_matches_original_javascript(catalog, exercise_id):
     assert exercise.name == original["exerciseName"]
     assert exercise.objective == original["objective"]
     assert exercise.mode == original["mode"]
-    assert exercise.vocal_notes == tuple(original["vocalNotes"])
-    assert exercise.guide_notes == tuple(original["guideNotes"])
+    if exercise_id == 27:
+        # Explicit desktop correction: the source fixture only holds one motif.
+        expected = tuple(original["vocalNotes"] + [None]) * 4 + tuple(original["vocalNotes"])
+        assert exercise.vocal_notes == exercise.guide_notes == expected
+    else:
+        assert exercise.vocal_notes == tuple(original["vocalNotes"])
+        assert exercise.guide_notes == tuple(original["guideNotes"])
     assert exercise.bpm == original["bpm"]
     assert exercise.subdivision == original["subdivision"]
     assert exercise.breathing_seconds == original["breathingDurationSec"]

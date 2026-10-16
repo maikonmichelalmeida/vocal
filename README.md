@@ -30,10 +30,10 @@ Sem o parâmetro, os 39 exemplos MP3, imagens e treinos respiratórios continuam
 1. Escolha uma sessão A–H ou um dos 39 exercícios. Anterior/próximo percorrem a sessão selecionada.
 2. Confira a sequência e a tablatura, ajustada por inteiro ao espaço disponível. A variação original fica na dica da sequência. Use **Ampliar tablatura** para vê-la em outra janela.
 3. Use **Tocar exemplo**, ao lado do título, para ouvir o MP3 original antes do treino; **Ouvir guia** reproduz a sequência no instrumento selecionado.
-4. Ajuste BPM (40–180), notas/pulso (1–4), transposição (−8 a +8), direção, **Guia** e **Nível**.
-5. Clique em **Início**. Há referência e quatro batidas rápidas de entrada; o gráfico acompanha os alvos e a voz. Use fones para evitar que o guia seja captado pelo microfone.
+4. Ajuste BPM (40–180), notas/pulso (1–4), transposição, direção, **Guia** e **Nível**. Todos os exercícios de pitch permitem deslocar o tom enquanto suas notas extremas permanecerem entre C2 e D6, dentro da faixa do detector. O limite é calculado para cada sequência, inclusive TXT.
+5. Clique em **Início** ou pressione **Espaço**. Há referência e quatro batidas rápidas de entrada; o gráfico acompanha os alvos e a voz. Use fones para evitar que o guia seja captado pelo microfone.
 6. Durante o treino, o gráfico ocupa a área principal e enquadra a sequência inteira e a voz com margem. No fim, a tabela recebe prioridade, com o gráfico completo em miniatura ao lado. Apenas a tabela tem rolagem vertical quando há muitas notas.
-7. **Tentar novamente** e **Fechar** mantêm o tom. Apenas **Concluir**, após o fim, aplica +1 ou −1 semitom, limitado a −8/+8.
+7. Ao aparecer o relatório, uma nota global de **75/100 ou mais** já seleciona automaticamente +1 ou −1 semitom para a próxima tentativa, conforme a direção escolhida e os limites da sequência. **Espaço** ou **Próxima** inicia essa tentativa na mesma janela; abaixo de 75/100, reinicia no mesmo tom. **Repetir tom** permite refazer o tom da tentativa apresentada. **Concluir** apenas fecha o relatório, sem aplicar outro deslocamento. Espaço durante um treino em andamento não cancela nem reinicia; cancelar antes do resultado não aplica progressão.
 
 As linhas do relatório usam preenchimentos suaves: verde para excelente, verde discreto para boa, amarelo para atenção, laranja para desvio e vermelho para erro. Notas incertas ou ausentes ficam neutras; os rótulos continuam visíveis e os critérios de avaliação são os mesmos.
 
@@ -50,11 +50,20 @@ B3 D4 G4 E4
 500 500 500 500
 ```
 
-Cada nota pode ter uma duração diferente. Sustenidos (`F#4`, `F♯4`) e bemóis (`Bb3`, `B♭3`) são aceitos. A quantidade de tempos deve corresponder à de notas. Limites do arquivo na base de 120 BPM: 256 notas, 1–60000 ms por nota, 10 minutos no total, arquivo de até 64 KB e notas MIDI 8–119 (com espaço para transposição). Notas muito curtas podem não fornecer voz suficiente para avaliação confiável.
+Cada nota pode ter uma duração diferente. Sustenidos (`F#4`, `F♯4`) e bemóis (`Bb3`, `B♭3`) são aceitos. Use **P** (ou **p**) para uma pausa deliberada, com sua própria duração:
+
+```text
+C3 P D3
+1000 500 1000
+```
+
+A pausa ocupa tempo, silencia o guia e não conta como nota ausente na avaliação. Os níveis fantasmas contam somente as notas. A quantidade de tempos deve corresponder à de posições, incluindo pausas. Limites do arquivo na base de 120 BPM: 256 posições, 1–60000 ms por posição, 10 minutos no total, arquivo de até 64 KB e notas MIDI 0–127. É obrigatória pelo menos uma nota, e a extensão da sequência deve caber entre C2 e D6 após transposição. Se necessário, o tom inicial é ajustado para essa faixa. Notas muito curtas podem não fornecer voz suficiente para avaliação confiável.
 
 O gráfico mostra a sequência importada; **Ouvir guia**, transposição e níveis fantasmas continuam disponíveis. **O BPM é ajustável**: cada tempo do TXT representa a duração a 120 BPM. A duração efetiva é `tempo do TXT × 120 / BPM escolhido`; por exemplo, 500 ms a 60 BPM viram 1000 ms. O ajuste vale para a prévia, o gráfico, o treino e a avaliação de notas repetidas, preservando o ritmo relativo e os dados do arquivo. Apenas notas/pulso permanece desabilitado. O TXT não contém gravação MP3: a prévia deste exercício é instrumental. Ao entrar novamente na sessão I, selecione o arquivo; o aplicativo não copia nem envia seu conteúdo.
 
 Os exercícios 1–3 duram 30 segundos e usam cronômetro/metrônomo, sem abrir microfone nem calcular pitch. O guia simultâneo desmarcado limita a ajuda à referência inicial ou à contagem, conforme o tipo de exercício. Preferências por exercício, sessão e instrumento são salvas em `%LOCALAPPDATA%\VocalTrainer\settings.json`.
+
+O **Three-Note Run** apresenta cinco repetições das três notas: 15 notas e quatro pausas curtas entre os grupos. Cada pausa dura metade de uma posição de nota, acompanhando BPM e subdivisão. A preparação mostra o gráfico completo; a tablatura original representa um único motivo.
 
 ### Níveis de notas fantasmas
 

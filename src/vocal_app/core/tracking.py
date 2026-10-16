@@ -239,6 +239,15 @@ class SegmentTracker:
         self.initial_raw_start_t = None
         self.last_initial_t = None
 
+    def deliberate_rest(self, t: float) -> None:
+        """Close a phrase at a written rest, even when shorter than the silence gate."""
+        self._finalize_current(t)
+        self.current = None
+        self.pending_transition = None
+        self.unvoiced_start_t = None
+        self._clear_initial()
+        self.state = "PAUSA"
+
     def _ingest_initial(self, frame: PitchFrame) -> None:
         c = self.config
         if not self.initial_frames:

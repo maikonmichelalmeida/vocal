@@ -5,7 +5,7 @@ filenames. None in a note sequence denotes an unvoiced or unguided position.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import hashlib
 import json
 from pathlib import Path
@@ -28,6 +28,7 @@ class Exercise:
     guide_notes: tuple[str | None, ...]
     breathing_seconds: int = 30
     durations_ms: tuple[int, ...] = ()
+    rhythm: tuple[float, ...] = ()
 
     @property
     def mode(self) -> str:
@@ -102,4 +103,19 @@ def load_catalog(assets_dir: str | Path | None = None, *, verify_hashes: bool = 
             raise ValueError(f"Tamanho do recurso alterado: {file}")
         if verify_hashes and hashlib.sha256(file.read_bytes()).hexdigest() != entry["sha256"]:
             raise ValueError(f"Integridade SHA-256 inválida: {file}")
-    return catalog
+    # The source lists only the three-note motif. The complete desktop exercise
+    # requested by the user has five repetitions and half-note-slot rests.
+    corrected = []
+    for exercise in catalog.exercises:
+        if exercise.id == 27:
+            phrase = exercise.vocal_notes
+            positions, rhythm = [], []
+            for repetition in range(5):
+                if repetition:
+                    positions.append(None)
+                    rhythm.append(.5)
+                positions.extend(phrase)
+                rhythm.extend([1.] * len(phrase))
+            exercise = replace(exercise, vocal_notes=tuple(positions), guide_notes=tuple(positions), rhythm=tuple(rhythm))
+        corrected.append(exercise)
+    return replace(catalog, exercises=tuple(corrected))
